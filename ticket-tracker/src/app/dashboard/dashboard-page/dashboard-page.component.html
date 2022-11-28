@@ -1,0 +1,74 @@
+
+<div class="wrap">
+    <nav class= "navbar navbar-expand-lg" style="background-color: white;">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+    <div class="container-fluid">
+      <a class="navbar-brand">HR Ticket Tracker</a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">        -->
+  
+          </ul>
+          <button type="button" class="btnlogout" >
+            <span class="material-symbols-outlined">
+            logout
+            </span>
+          </button>
+        </div>
+    </div>
+  </nav>
+  </div>
+  
+  <div class="btn-group-vertical btn-group-lg">
+
+        <button 
+          class="btn" 
+          type="button"
+          routerLinkActive="active"
+          routerLink="home"
+        ><a
+          class="nav-link"
+          aria-current="page"
+        >Home</a>
+      </button>
+      
+      <button 
+          class="btn" 
+          type="button"
+          routerLinkActive="active"
+          routerLink="ticket"
+        ><a
+          class="nav-link"
+          aria-current="page"
+        >Tickets</a>
+      </button>
+  
+      <button 
+          class="btn" 
+          type="button"
+          routerLinkActive="active"
+          routerLink="management"
+        ><a
+          class="nav-link"
+          aria-current="page"
+        >Management</a>
+      </button>
+  
+      <button 
+          class="btn" 
+          type="button"
+          routerLinkActive="active"
+          routerLink="monthly-report"
+        ><a
+          class="nav-link"
+          aria-current="page"
+        >Monthly Report</a>
+      </button>
+  
+  </div>
+  
+  
+  <router-outlet></router-outlet>
