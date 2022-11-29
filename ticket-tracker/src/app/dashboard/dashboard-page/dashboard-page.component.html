@@ -58,19 +58,20 @@
                     <th scope="col">Assignee</th>
                     <th scope="col">Sender</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">image link</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Description</th>
                     <th scope="col">name</th>
                 </tr>
             </thead>
             <tbody style="text-align: left" *ngFor="let ticket of tickets; let i = index">
                 <tr>
-                    <th scope="row">{{ ticket.ticket_id }}</th>
-                    <td>{{ ticket.assignee_id }}</td>
-                    <td>{{ ticket.sender_id }}</td>
-                    <td>{{ ticket.ticket_category }}</td>
+                    <th scope="row">{{ ticket.id }}</th>
+                    <td>{{ ticket.assignee }}</td>
+                    <td>{{ ticket.sender }}</td>
+                    <td>{{ ticket.category }}</td>
                     <td>{{ ticket.subject }}</td>
                     <td>{{ ticket.description}}</td>
+
                     <td>
                         <button>
               Update
