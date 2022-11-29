@@ -28,7 +28,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   imports: [
     //LoginModule,
