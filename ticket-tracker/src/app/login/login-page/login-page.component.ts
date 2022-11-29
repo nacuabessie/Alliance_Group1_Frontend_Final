@@ -101,8 +101,8 @@ export class LoginComponent implements OnInit {
       });
     this.userService.getUserByEmail(this.loginForm.value.emailLogin).subscribe((data: Users)=>{
       this.postUser = data;
-      if(this.postUser.user_password == this.loginForm.value.passLogin  ){
-        this.toast.success(`Welcome ${this.postUser.user_fname}!`);
+      if(this.postUser.password == this.loginForm.value.passLogin  ){
+        this.toast.success(`Welcome ${this.postUser.user_name}!`);
         this.nav("dashboard");
       }else{
         this.toast.error("Incorrect Password!");
@@ -126,11 +126,11 @@ export class LoginComponent implements OnInit {
     }
     const payload: Users = {
      
-      user_email: this.registerForm.value.registerEmailAdd,
-      user_lname: this.registerForm.value.registerLastName,
-      user_fname: this.registerForm.value.registerFirstName,
-      user_username: this.registerForm.value.registerUserName,
-      user_password:  this.registerForm.value.registerPassword,
+      email: this.registerForm.value.registerEmailAdd,
+      user_name: this.registerForm.value.registerName,
+      name: this.registerForm.value.registerUserName,
+      password:  this.registerForm.value.registerPassword,
+      image_link: this.registerForm.value.image_link,
       
     };
     this.userService.saveUser(payload).pipe(this.toast.observe({

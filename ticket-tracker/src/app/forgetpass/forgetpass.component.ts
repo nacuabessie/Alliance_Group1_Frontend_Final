@@ -30,7 +30,7 @@ export class ForgotComponent implements OnInit {
       this.users = data;
       for(let i  = 0; i < this.users.length; i++){
         
-        if(this.users[i].user_email == this.confirmPasswordForm.value.email){
+        if(this.users[i].email == this.confirmPasswordForm.value.email){
           this.toast.success("Email Found!");
           this.isFound = 1;
           console.log(this.isFound);

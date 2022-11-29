@@ -1,74 +1,121 @@
-
 <div class="wrap">
-    <nav class= "navbar navbar-expand-lg" style="background-color: white;">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  
-    <div class="container-fluid">
-      <a class="navbar-brand">HR Ticket Tracker</a>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">        -->
-  
-          </ul>
-          <button type="button" class="btnlogout" >
+    <nav class="navbar navbar-expand-lg" style="background-color: white;">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+        <div class="container-fluid">
+            <a class="navbar-brand">HR Ticket Tracker</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="nav navbar-nav me-auto mb-2 mb-lg-0"> -->
+
+                </ul>
+                <button type="button" class="btnlogout">
             <span class="material-symbols-outlined">
             logout
             </span>
           </button>
+            </div>
         </div>
-    </div>
-  </nav>
-  </div>
-  
-  <div class="btn-group-vertical btn-group-lg">
+    </nav>
+</div>
 
-        <button 
-          class="btn" 
-          type="button"
-          routerLinkActive="active"
-          routerLink="home"
-        ><a
+<div class="btn-group-vertical btn-group-lg">
+
+    <button class="btn" type="button" routerLinkActive="active" routerLink="home"><a
           class="nav-link"
           aria-current="page"
         >Home</a>
       </button>
-      
-      <button 
-          class="btn" 
-          type="button"
-          routerLinkActive="active"
-          routerLink="ticket"
-        ><a
+
+    <button class="btn" type="button" routerLinkActive="active" routerLink="ticket"><a
           class="nav-link"
           aria-current="page"
         >Tickets</a>
       </button>
-  
-      <button 
-          class="btn" 
-          type="button"
-          routerLinkActive="active"
-          routerLink="management"
-        ><a
+
+    <button class="btn" type="button" routerLinkActive="active" routerLink="management"><a
           class="nav-link"
           aria-current="page"
         >Management</a>
       </button>
-  
-      <button 
-          class="btn" 
-          type="button"
-          routerLinkActive="active"
-          routerLink="monthly-report"
-        ><a
+
+    <button class="btn" type="button" routerLinkActive="active" routerLink="monthly-report"><a
           class="nav-link"
           aria-current="page"
         >Monthly Report</a>
       </button>
-  
-  </div>
-  
-  
-  <router-outlet></router-outlet>
+
+</div>
+<div *ngIf="tickets.length > 0; else noTickets" class="container" style="width: 3000px">
+    <!--START CARD-->
+    <div class="content" style="font-size: 25px; font-weight: 200; font-family: monospace">
+        <table class="table table-hover">
+            <thead class="bg-primary text-white" style="text-align: left">
+                <tr>
+                    <th scope="col">Ticket ID</th>
+                    <th scope="col">Assignee</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">image link</th>
+                    <th scope="col">name</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: left" *ngFor="let ticket of tickets; let i = index">
+                <tr>
+                    <th scope="row">{{ ticket.ticket_id }}</th>
+                    <td>{{ ticket.assignee_id }}</td>
+                    <td>{{ ticket.sender_id }}</td>
+                    <td>{{ ticket.ticket_category }}</td>
+                    <td>{{ ticket.subject }}</td>
+                    <td>{{ ticket.description}}</td>
+                    <td>
+                        <button>
+              Update
+            </button>
+                        <button>
+              Resolve
+            </button>
+                        <button type="button" class="btn btn-success btn-sm">
+              View more
+            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div fxLayout="row wrap" fxLayoutGap="25px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"  *ngFor="let ticket of tickets; let i = index">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>{{ticket.subject}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="assets/ticket.png"class=".img-responsive" width="10" height="200">
+            <mat-card-content class="mat-typography">
+              <p>
+                
+                Assignee: {{ticket.assignee}}
+                
+              </p>
+
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="onView(car)" *ngIf="car.carStatus == 'Available'"><mat-icon>add_circle</mat-icon>RESERVE CAR</button>
+              <button mat-button (click)="onView(car)" *ngIf="car.carStatus == 'Rented'"[disabled]="true"><mat-icon>warning</mat-icon>Unavailable</button>
+              <button mat-button color="primary" (click)="updateTicket(ticket)">UPDATE</button>
+              <button mat-button color="primary" (click)="deleteTicket(ticket,i)">DELETE</button>
+              <button mat-button color="primary">VIEW MORE</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+    </div> -->
+    </div>
+    <!--END CARD-->
+</div>
+<!-- <button (click)="logout()">Log out!</button> -->
+<ng-template #noTickets>
+    <hr />
+    <h5>There are no tickets listed!</h5>
+</ng-template>
+<router-outlet></router-outlet>

@@ -1,8 +1,11 @@
 export interface Users{
     user_id?: number;
-    user_fname: string;
-    user_lname: string;
-    user_email: string;
-    user_username: string;
-    user_password: string;
+    role_id?: number;
+    user_name: string;
+    //user_lname: string;
+    email: string;
+    image_link: string;
+    name: string;
+    password: string;
+    //user_password: string;
 }
