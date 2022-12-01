@@ -23,6 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule
+  ],
+
+  exports: [
+    DashboardPageComponent
   ]
 })
 export class DashboardModule { }

@@ -9,21 +9,26 @@ import { TicketPageComponent } from './ticket-page/ticket-page.component';
 const routes: Routes = [
   {
     path: 'dashboard', component: DashboardPageComponent,
-    children:[
-      {
-        path: 'home', component: HomePageComponent,
-      },
-      {
-        path: 'ticket', component: TicketPageComponent,
-      },
-      {
-        path: 'management', component: ManagementPageComponent,
-      },
-      {
-        path: 'monthly-report', component: MonthlyReportPageComponent,
-      },
-    ]
-  }
+    children: []
+
+  },
+  
+  {
+    path: 'home', component: HomePageComponent,
+      
+  },
+
+  {
+    path: 'ticket', component: TicketPageComponent,
+  },
+
+  {
+    path: 'management', component: ManagementPageComponent,
+  },
+  
+  {
+    path: 'monthly-report', component: MonthlyReportPageComponent,
+  },
 ];
 
 @NgModule({

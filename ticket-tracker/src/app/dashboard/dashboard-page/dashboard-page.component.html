@@ -23,100 +23,24 @@
 
 <div class="btn-group-vertical btn-group-lg">
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="home"><a
-          class="nav-link"
-          aria-current="page"
-        >Home</a>
+    <button class="btn" type="button" 
+        routerLinkActive="active" 
+        routerLink="home"        
+        >
+        Home
       </button>
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="ticket"><a
-          class="nav-link"
-          aria-current="page"
-        >Tickets</a>
+    <button class="btn" type="button" routerLinkActive="active" routerLink="ticket">
+        Tickets
       </button>
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="management"><a
-          class="nav-link"
-          aria-current="page"
-        >Management</a>
+    <button class="btn" type="button" routerLinkActive="active" routerLink="management">
+        Management
       </button>
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="monthly-report"><a
-          class="nav-link"
-          aria-current="page"
-        >Monthly Report</a>
+    <button class="btn" type="button" routerLinkActive="active" routerLink="monthly-report">
+        Monthly Report
       </button>
 
 </div>
-<div *ngIf="tickets.length > 0; else noTickets" class="container" style="width: 3000px">
-    <!--START CARD-->
-    <div class="content" style="font-size: 25px; font-weight: 200; font-family: monospace">
-        <table class="table table-hover">
-            <thead class="bg-primary text-white" style="text-align: left">
-                <tr>
-                    <th scope="col">Ticket ID</th>
-                    <th scope="col">Assignee</th>
-                    <th scope="col">Sender</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">name</th>
-                </tr>
-            </thead>
-            <tbody style="text-align: left" *ngFor="let ticket of tickets; let i = index">
-                <tr>
-                    <th scope="row">{{ ticket.id }}</th>
-                    <td>{{ ticket.assignee }}</td>
-                    <td>{{ ticket.sender }}</td>
-                    <td>{{ ticket.category }}</td>
-                    <td>{{ ticket.subject }}</td>
-                    <td>{{ ticket.description}}</td>
-
-                    <td>
-                        <button>
-              Update
-            </button>
-                        <button>
-              Resolve
-            </button>
-                        <button type="button" class="btn btn-success btn-sm">
-              View more
-            </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!-- <div fxLayout="row wrap" fxLayoutGap="25px grid">
-        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"  *ngFor="let ticket of tickets; let i = index">
-          <mat-card class="mat-elevation-z4">
-            <mat-card-header>
-              <mat-card-title>{{ticket.subject}}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src="assets/ticket.png"class=".img-responsive" width="10" height="200">
-            <mat-card-content class="mat-typography">
-              <p>
-                
-                Assignee: {{ticket.assignee}}
-                
-              </p>
-
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button (click)="onView(car)" *ngIf="car.carStatus == 'Available'"><mat-icon>add_circle</mat-icon>RESERVE CAR</button>
-              <button mat-button (click)="onView(car)" *ngIf="car.carStatus == 'Rented'"[disabled]="true"><mat-icon>warning</mat-icon>Unavailable</button>
-              <button mat-button color="primary" (click)="updateTicket(ticket)">UPDATE</button>
-              <button mat-button color="primary" (click)="deleteTicket(ticket,i)">DELETE</button>
-              <button mat-button color="primary">VIEW MORE</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-    </div> -->
-    </div>
-    <!--END CARD-->
-</div>
-<!-- <button (click)="logout()">Log out!</button> -->
-<ng-template #noTickets>
-    <hr />
-    <h5>There are no tickets listed!</h5>
-</ng-template>
 <router-outlet></router-outlet>
