@@ -1,0 +1,187 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Tickets</h2>   
+        <button
+          style="padding: 10px"
+          type="button"
+          class="add"
+          (click)="openPopup()">Add
+        </button>
+     </div>   
+    <div
+      class="modal modal-lg"
+      tabindex="-1"
+      role="dialog"
+      [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Add Ticket</h4>
+        </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue" class="row g-3" >
+          <div class="col-md-6">
+            <label for="ticketid" class="form-label">Tickect ID:</label>
+            <input type="text" formControlName="ticketid" class="form-control" aria-label="ticketid">
+          </div>
+          <div class="col-md-6" >
+            <label for="assignee" class="form-label">Assignee:</label>
+            <input type="text" formControlName="assignee" class="form-control" aria-label="assignee">
+          </div>
+          <div class="col-md-6">
+            <label for="status" class="form-label">Status:</label>
+            <input type="text" formControlName="status" class="form-control" aria-label="status">
+          </div>
+          <div class="col-md-6">
+            <label for="subject" class="form-label">Subject:</label>
+            <input type="text" formControlName="subject" class="form-control" aria-label="subject">
+          </div>
+          <div class="col-md-6">
+            <label for="tracker" class="form-label">Tracker:</label>
+            <input type="text" formControlName="tracker" class="form-control" aria-label="tracker">
+          </div>
+          <div class="col-md-6">
+            <label for="classtype" class="form-label">Class Type:</label>
+            <input type="text" formControlName="classtype" class="form-control" aria-label="classtype">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+          </div>
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" 
+                (click)="closePopup()">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">TICKET ID</th>
+            <th scope="col">SUBJECT</th>
+            <th scope="col">ASSIGNEE</th>
+            <th scope="col">TRACKER</th>
+            <th scope="col">CLASS TYPE</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>01</td>
+                <td>Aquisition</td>
+                <td>001</td>
+                <td>tracker</td>
+                <td>payments</td>
+                <td>pending</td>
+                <td>
+                    <button type="button" (click)="openEditPopup()" class="btn btn-danger">
+                      Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Aquisition</td>
+              <td>002</td>
+              <td>tracker</td>
+              <td>payments</td>
+              <td>pending</td>
+              <td>
+                  <button type="button" (click)="openEditPopup()" class="btn btn-danger">
+                      Edit
+                  </button>                
+              </td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Aquisition</td>
+            <td>003</td>
+            <td>tracker</td>
+            <td>payments</td>
+            <td>pending</td>
+            <td>
+                <div>
+                  <button type="button" (click)="openEditPopup()" class="btn btn-danger">
+                    Edit
+                  </button>
+ 
+                </div>
+                
+            </td>
+        </tr>
+        </tbody>
+      
+    </table>
+
+  <!-- edit button modal  -->
+    <div
+    class="modal modal-lg"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{'display':displayEditStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Ticket</h4>
+          </div>
+
+            <div class="modal-body">
+              <form [formGroup]="formValue" class="row g-3" >
+                <div class="col-md-6">
+                  <label for="ticketid" class="form-label">Tickect ID:</label>
+                  <input type="text" formControlName="ticketid" class="form-control" aria-label="ticketid">
+                </div>
+
+                <div class="col-md-6" >
+                  <label for="assignee" class="form-label">Assignee:</label>
+                  <input type="text" formControlName="assignee" class="form-control" aria-label="assignee">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="status" class="form-label">Status:</label>
+                  <input type="text" formControlName="status" class="form-control" aria-label="status">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="subject" class="form-label">Subject:</label>
+                  <input type="text" formControlName="subject" class="form-control" aria-label="subject">
+                 </div>
+
+                <div class="col-md-6">
+                  <label for="tracker" class="form-label">Tracker:</label>
+                  <input type="text" formControlName="tracker" class="form-control" aria-label="tracker">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="classtype" class="form-label">Class Type:</label>
+                  <input type="text" formControlName="classtype" class="form-control" aria-label="classtype">
+                </div>
+
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description:</label>
+                  <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+                </div>
+              </form> 
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" 
+            (click)="closeEditPopup()">Close
+            </button>
+          <button type="button" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+    </div>
+  </div>
+ 
+</div>
+
+<router-outlet></router-outlet>

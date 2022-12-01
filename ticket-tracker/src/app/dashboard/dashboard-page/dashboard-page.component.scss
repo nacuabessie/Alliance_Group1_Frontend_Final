@@ -1,44 +1,37 @@
-.navbar-brand {
+.navbar-brand{
     color: #73408B;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 30px;
-    margin-left: 20px;
+    font-size: 20px;
 }
 
 .btnlogout {
     position: relative;
-    //float: right;
-    right: 43px;
+    float: right;
     border-radius: 30%;
     border: 0;
-    width: 10;
-    background-color: #ffff;
-    size: 10em;
-    //background-color: #73408B;
-    color: #73408B;
+    background-color: #73408B;
+    color: white;
     size: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.nav {
+.nav{
     color: white;
     font-family: 'Poppins', sans-serif;
 }
 
-.btn {
+.btn{
     font-family: 'Poppins', sans-serif;
     background-color: #73408B;
     color: white;
     top: 50px;
     left: 30px;
 }
-
-.btn:hover {
+.btn:hover{
     background-color: #b381ca;
 }
 
-.btn:focus,
+.btn:focus, 
 .btn:active {
     background-color: #b381ca;
     transition: none;

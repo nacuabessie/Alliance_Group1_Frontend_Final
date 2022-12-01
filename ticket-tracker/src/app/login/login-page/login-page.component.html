@@ -1,0 +1,92 @@
+<!-- <div class="mainContent">
+    <h5 ">{{error}}</h5>
+    <div class="login ">
+        <div class="inputs ">
+            <label for="EMAIL ">Email</label>
+            <input type="email " name="EMAIL " [formControl]="fcEmail " />
+            <label for="PASSWORD ">Password</label>
+            <input type="password " name="PASSWORD " [formControl]="fcPassword " />
+        </div>
+        <div class="actions ">
+            <button (click)="login() ">LOGIN</button>
+            <button class="btn " routerLink="/ " routerLinkActive="active " [routerLinkActiveOptions]="{exact: true} "><a
+                class="nav-link "
+                > Login</a> 
+              </button>
+        </div>
+        <h5 (click)="nav( 'register') ">No account yet? Create an account</h5>
+    </div>
+
+</div> -->
+<!-- <div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <h1 color="primary" class="login">HR TICKET TRACKER</h1>
+    <form class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProcess()">
+        <mat-form-field>
+            <input matinput placeholder="Username" formControlName="email">
+        </mat-form-field> <br>
+        <mat-form-field>
+            <input matinput placeholder="Password" formControlName="password">
+        </mat-form-field> <br>
+        <button mat-raised-button type="submit" class="mt-5" id="loginButton" color="primary">LOG IN</button>
+    </form>
+</div> -->
+<!-- <html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="login.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head> -->
+
+<body>
+    <div class="text">
+
+        <h1 class="text-1">Group 1: HR Ticket Tracker</h1>
+    </div>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <input type="checkbox" id="flip">
+                <div class="cover">
+                    <div class="front">
+                        <!-- <img src="assets/wall2.jpg" alt=""> -->
+
+                    </div>
+                    <div class="back">
+                        <img class="backImg" src="assets/wall2.jpg" alt="">
+                        <div class="text">
+                            <!-- <span class="text-1">Join us now!</span>
+                        <span class="text-2">Yea right!</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-content">
+                    <div class="login-form">
+                        <form class="inputs" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+                            <div class="title-login">Login</div>
+                            <div class="input-boxes">
+                                <div class="input-box">
+                                    <i class="fa fa-envelope"></i>
+                                    <input class="inputhere" type="text" #email formControlName="emailLogin" placeholder="Email" required>
+                                </div>
+                                <div class="input-box" id="password-box">
+                                    <i class="fa fa-lock"></i>
+                                    <input class="inputhere" type="password" formControlName="passLogin" placeholder="Password" required>
+                                </div>
+
+                                <div class="button input-box">
+                                    <input type="submit" value="Submit" class="button-login">
+                                </div>
+                                <div class="text sign-up-text"><a style="color:blue" (click)="onOpenForgot()">Forgot Password?</a><br><label for="flip"><a style="color:blue">  Sign Up Now! </a></label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

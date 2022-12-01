@@ -1,0 +1,48 @@
+.card{
+    position: absolute;  
+    padding: 10px;
+    right: 55px;
+    top: 16%;
+    width: 75%;
+    font-family: 'Poppins', sans-serif;
+}
+.card .table{
+    text-align: center;
+}
+
+.card th{
+    background-color: #73408B;
+    color: white;
+    font-size: 12px;
+}
+.modal-header{
+    background-color: #73408B;
+    color: white;
+    font-weight: 800;
+}
+
+.modal-footer {
+    background-color: #73408B;
+}
+.card-header{
+    background-color: #d5b8e2;
+}
+
+.modal-body{
+    background-color: #d5b8e2;
+}
+.card h2 {
+    text-align: left;
+}
+.card .add{
+    display: flex;
+    padding: 12px;
+    margin-left: auto;
+    background-color: #73408B;
+    color: white;
+    border-radius: 15%;
+    border: 0;
+    size: 20px;
+}
+
+
