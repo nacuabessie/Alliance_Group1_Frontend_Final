@@ -1,3 +1,4 @@
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,10 +10,18 @@ import { Users } from 'src/app/service/user/user';
 
 import { UsersService } from 'src/app/service/user/user.service';
 
+
 @Component({
   selector: 'app-ticket-page',
   templateUrl: './ticket-page.component.html',
-  styleUrls: ['./ticket-page.component.scss']
+  styleUrls: ['./ticket-page.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class TicketPageComponent implements OnInit {
   constructor(
@@ -31,7 +40,7 @@ export class TicketPageComponent implements OnInit {
   }
   displayStyle = "none";
   displayEditStyle = "none";
-
+  
   searchForm: FormGroup = new FormGroup({
     search: new FormControl('', Validators.required),
   });
