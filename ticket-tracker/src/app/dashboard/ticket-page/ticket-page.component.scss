@@ -166,6 +166,7 @@ h2 {
     font-size: 30px;
     padding: 50px;
     font-weight: 800;
+    display: flex;
 }
 
 .modal-body {
@@ -177,7 +178,6 @@ h2 {
 }
 
 button {
-    display: flex;
     text-align: center;
     font-size: 18px;
     margin-left: 5px;
@@ -185,10 +185,9 @@ button {
 }
 
 .add {
-    position: absolute;
     right: 55px;
     top: 13%;
-    width: 80px;
+    width: 90px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     //display: flex;
@@ -255,3 +254,10 @@ button {
     border-radius: 100px;
 }
 
+.material-symbols-outlined{
+    font-size: 20px;
+}
+
+.button{
+    display: flex;
+}

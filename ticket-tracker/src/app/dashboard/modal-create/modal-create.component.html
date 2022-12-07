@@ -1,54 +1,53 @@
 <div class="container">
-    <input type="checkbox" id="flip">
-
-    <form class="inputs" [formGroup]="ticketForm"(ngSubmit)="onSubmitCreate()">
-       <div class="form-content">
-        <div class="admin-form">
+    
+    <form class="inputs" [formGroup]="form">
+       <div class="form-group">
             <div class="title">Create New Ticket</div>
-            <div class="input-boxes">
-              <div class="input-box">
-                <i class="fa fa-car"></i>
-                <label for="assignee" class="form-label">Ticket ID</label>
-                <input type="text" formControlName="ticketID">
-            </div>
+            <div class="fields row mb-5">
 
-            <div class="input-box">
-                <i class="fa fa-road"></i>
-                <label for="assignee" class="form-label">Subject</label>
+            <!-- <div class="ticket">
+                <label for="TicektID" class="form-label">Ticket ID:</label>
+                <br>
+                <input type="text" formControlName="ticketID">
+            </div> -->
+            <div class="assignee">
+                <label for="assign" class="form-label">Assignee:</label>
+                <select name="dropdown" (change)="chooseAssignee($event)">
+                    <option hidden selected>select</option>
+                    <option value="{{users[i]['user_id?']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
+                </select>
+                
+            </div>
+            <div class="sub">
+                <label for="subject" class="form-label">Subject:</label>
+                <br>
                 <input type="text" formControlName="ticketsubject">
             </div>
-
-            <div class="input-box">
-                <i class="fa fa-road"></i>
-                <label for="description" class="form-label">Description:</label>
-                <input type="text"formControlName="ticketdescription ">
-            </div>
-
-            <div class="input-box">
-                <i class="fa fa-road"></i>
-                <label for="subject" class="form-label">File Upload</label>
-                        <input type="text" formControlName="ticketFile" aria-label="subject">
-            </div>
-            <div class="input-box">
-                <i class="fa fa-road"></i>
-                <label for="tracker" class="form-label">Ticket Category</label>
+            <div class="cat col">
+                <label for="stat" class="form-label">Status</label>
+                <br>
                 <input type="text" formControlName="ticketcategory">
             </div>
-            <div class="input-box">
-                <select class="form-control form-control-sm" >
-                    <option formControlName="ticketassignee" >Assignee</option>
-                  </select>
+            <div class="description">
+                <label for="description" class="form-label">Description:</label>
+                <br>
+                <input type="text" formControlName="ticketdescription">
             </div>
 
-            <div class="input-box">
-                <i class="fa fa-road"></i>
-                <label for="classtype" class="form-label">Status</label>
-                <input type="text" formControlName="ticketstatus">
+            <div class="file">
+                <label for="subject" class="form-label">File Upload</label>
+                <br>
+                <input type="text" formControlName="ticketfile" aria-label="subject">
+            </div>
+            <div class="cat col">
+                <label for="tracker" class="form-label">Ticket Category:</label>
+                <br>
+                <input type="text" formControlName="ticketcategory">
             </div>
 
-            <div class="input-box">
-                <i class="fa fa-road"></i>
-                <label for="classtype" class="form-label">Deadline</label>
+            <div class="deadline">
+                <label for="classtype" class="form-label">Deadline:</label>
+                <br>
                 <input type="text" formControlName="ticketdeadline">
             </div>
 
@@ -64,13 +63,11 @@
              
             </div> -->
                 
-                <div class="button input-box">
-
-                    <input type="submit" value="Submit Ticket">
+                <div class="buttons input-box">
+                    <button type="button" (click)="onSubmitCreate()">Create</button>                
+                    <button  (click)="close()">Close</button>
                 </div>
-                <div class="text sign-up-text"><button routerLink="/user-dashboard" (click)="close()">Take me back!</button></div>
             </div>
-        </div>
         </div>
     </form>
     </div>

@@ -1,5 +1,5 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -12,58 +12,73 @@ import { UsersService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-modal-create',
+  providers: [ UsersService ],
   templateUrl: './modal-create.component.html',
   styleUrls: ['./modal-create.component.scss']
 })
 export class ModalCreateComponent implements OnInit{
-  postTicket: Ticket;
+
+  // postTicket: Ticket;
+  // refreshTicket: Ticket[] = [];
   constructor(
     private dialog: MatDialog,
     private toast: HotToastService,
     private HttpClient: HttpClient,
     private ticketService: TicketService,
+    private userService: UsersService,
     private router: Router,
+    private fb: FormBuilder,
   ) { }
-  ticketForm: FormGroup = new FormGroup({
-    ticketsubject: new FormControl('', Validators.required),
-    ticketcategory: new FormControl('', Validators.required),
-    ticketdescription: new FormControl('', Validators.required),
-    ticketassignee: new FormControl('', Validators.required),
-    ticketID: new FormControl('', Validators.required),
-    ticketsender: new FormControl('', Validators.required),
-    ticketstatus: new FormControl('', Validators.required),
-    ticketFile: new FormControl('', Validators.required),
-    
-  });
+
+  users: any[] = [];
+
+    form = this.fb.group({
+      ticketstatus:[''],
+      ticketsubject:[''],
+      ticketdescription:[''],
+      ticketcategory:[''],
+      ticketdeadline:[''],
+      ticketassignee:[''],
+      ticketfile:[''],
+    })
+
+    get f(){
+      return this.form.controls;
+    }
+
+    onSubmitCreate(){
+      let formData: FormData = new FormData();
+
+      formData.append('assignee', this.selectedassignee);
+      formData.append('status', '1');
+      formData.append('subject', this.f.ticketsubject.value!);
+      formData.append('category', this.f.ticketcategory.value!);
+      formData.append('description', this.f.ticketdescription.value!);
+      formData.append('deadline', this.f.ticketdeadline.value!);
+      formData.append('document_Path', this.f.ticketfile.value!);
+      formData.append('sender', '1')
+      
+      console.log(formData);
+
+      this.ticketService.saveTicket(formData).subscribe(result =>{})
+      this.close();
+
+    }
+
+    selectedassignee: string='';
+
+    chooseAssignee(assignee: any){
+      this.selectedassignee = assignee.target.value;
+    }
   ngOnInit(): void {
+    console.log("NGONINIT")
+    this.userService.getAllUsers().subscribe((result) => {
+      this.users = result['data'];
+    })
   }
 
-  onSubmitCreate(){
-    if(this.ticketForm.invalid){
-      this.toast.error("Invalid Registration!");
-      return;
-    }
-    const payload: Ticket = {
-      subject: this.ticketForm.value.ticketsubject,
-      category: this.ticketForm.value.ticketcategory,
-      description: this.ticketForm.value.ticketdescription,
-      assignee: this.ticketForm.value.ticketassignee,
-      id: this.ticketForm.value.ticketID,
-      sender: this.ticketForm.value.ticketsender,
-      status: this.ticketForm.value.ticketstatus,
-      file_location: this.ticketForm.value.ticketFile
-    };
-    this.ticketService.saveTicket(payload).pipe(this.toast.observe({
-      success: "Ticket Created!",
-      loading: "Processing",
-      error: (message: any) => `${message}`
-    })).subscribe((data: Ticket) => {
-      this.postTicket = data;
-      this.nav("ticket");
-      this.close();
-    });
-      
-  }
+ 
+       
   close(){
     this.dialog.closeAll();
   }

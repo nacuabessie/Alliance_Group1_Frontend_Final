@@ -89,15 +89,17 @@ export class TicketPageComponent implements OnInit {
   }
 
 
-  modalCreate() {
+  openmodalCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true;
-    dialogConfig.width =  "80%";
+    dialogConfig.width =  "50%";
+    dialogConfig.height =  "80%";
     dialogConfig.panelClass = 'post-dialog-container',
     this.dialog.open(ModalCreateComponent,dialogConfig);
     this.getAllTicket();
   }
+  
   closePopup() {
     this.displayStyle = "none";
   }

@@ -6,7 +6,7 @@
       style="padding: 10px"
       type="button"
       class="add"
-      (click)="modalCreate()">Create 
+      (click)="openmodalCreate()">Create 
     </button>
  </div>  
   <table class="table table-striped" *ngIf="tickets.length > 0; else noTickets">
@@ -31,12 +31,16 @@
               <td>{{ ticket.status }}</td>
               <td>{{ ticket.subject }}</td>
               <td>{{ ticket.description}}</td>
-              <td>
+              <td class="button">
                   <button type="button" class="btn btn-primary">
-                      Edit
+                    <span class="material-symbols-outlined">
+                      edit
+                      </span>
                   </button>
                   <button type="button" class="btn btn-danger">
-                      Delete
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
                   </button>
               </td>
           </tr>

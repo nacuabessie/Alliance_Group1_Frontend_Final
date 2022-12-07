@@ -38,7 +38,7 @@ export class TicketService {
       .get('http://localhost:8080/ticket/all')
       .pipe(map((resp) => resp));
   }
-  saveTicket(ticket: Ticket) {
+  saveTicket(ticket: FormData) {
     return this.http
       .post('http://localhost:8080/ticket/create', ticket)
       .pipe(map((resp) => resp));
