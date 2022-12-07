@@ -44,6 +44,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     HotToastModule.forRoot(),
     BrowserAnimationsModule,
     DashboardModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

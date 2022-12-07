@@ -1,0 +1,150 @@
+<div class="container">
+    <input type="checkbox" id="flip">
+
+    <form class="inputs" [formGroup]="ticketForm"(ngSubmit)="onSubmitCreate()">
+       <div class="form-content">
+        <div class="admin-form">
+            <div class="title">Create New Ticket</div>
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fa fa-car"></i>
+                <label for="assignee" class="form-label">Ticket ID</label>
+                <input type="text" formControlName="ticketID">
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-road"></i>
+                <label for="assignee" class="form-label">Subject</label>
+                <input type="text" formControlName="ticketsubject">
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-road"></i>
+                <label for="description" class="form-label">Description:</label>
+                <input type="text"formControlName="ticketdescription ">
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-road"></i>
+                <label for="subject" class="form-label">File Upload</label>
+                        <input type="text" formControlName="ticketFile" aria-label="subject">
+            </div>
+            <div class="input-box">
+                <i class="fa fa-road"></i>
+                <label for="tracker" class="form-label">Ticket Category</label>
+                <input type="text" formControlName="ticketcategory">
+            </div>
+            <div class="input-box">
+                <select class="form-control form-control-sm" >
+                    <option formControlName="ticketassignee" >Assignee</option>
+                  </select>
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-road"></i>
+                <label for="classtype" class="form-label">Status</label>
+                <input type="text" formControlName="ticketstatus">
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-road"></i>
+                <label for="classtype" class="form-label">Deadline</label>
+                <input type="text" formControlName="ticketdeadline">
+            </div>
+
+
+            <!-- <div class="input-box">
+              <i class="fa fa-key"></i>
+                <input matInput [matDatepicker]= "datePicker" placeholder="Pick-up Date"[min]="minDate"[max]="maxDate"[(ngModel)]="getDate" [ngModelOptions]="{standalone: true}">
+                
+                <mat-datepicker-toggle [for]= "datePicker" matSuffix>
+                  <mat-datepicker #datePicker>
+                  </mat-datepicker>
+                </mat-datepicker-toggle>
+             
+            </div> -->
+                
+                <div class="button input-box">
+
+                    <input type="submit" value="Submit Ticket">
+                </div>
+                <div class="text sign-up-text"><button routerLink="/user-dashboard" (click)="close()">Take me back!</button></div>
+            </div>
+        </div>
+        </div>
+    </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="modal modal-lg" tabindex="-1" role="dialog">   
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Ticket</h4>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" [formGroup]="ticketForm" (ngSubmit)="onSubmitCreate()">
+                    <div class="md-6">
+                        <label for="assignee" class="form-label">Ticket ID</label>
+                        <input type="text" formControlName="ticketID">
+                    </div>
+                    <div class="md-6">
+                        <label for="assignee" class="form-label">Subject</label>
+                        <input type="text" formControlName="ticketsubject">
+                    </div>
+                    <div class="mb-3">
+                      <label for="description" class="form-label">Description:</label>
+                      <input type="text"formControlName="ticketdescription " rows="3">
+                  </div>
+                    <div class="md-6">
+                        <label for="subject" class="form-label">File Upload</label>
+                        <input type="text" formControlName="ticketFile" aria-label="subject">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tracker" class="form-label">Ticket Category</label>
+                        <input type="text" formControlName="ticketcategory">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="classtype" class="form-label">Assignee</label>
+                        <input type="text" formControlName="ticketassignee">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="classtype" class="form-label">Status</label>
+                        <input type="text" formControlName="ticketstatus">
+                    </div>
+                    <div class="md-6">
+                      <label for="classtype" class="form-label">Deadline</label>
+                      <input type="text" formControlName="ticketdeadline">
+                  </div>
+
+                    
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class="text sign-up-text"><a routerLink="/ticket" (click)="close()">Take me back!</a></div>
+                <div class="button input-box">
+        
+                    <input type="submit" value="Submit Ticket">
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

@@ -9,6 +9,9 @@ import { ManagementPageComponent } from './management-page/management-page.compo
 import { MonthlyReportPageComponent } from './monthly-report-page/monthly-report-page.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalCreateComponent } from './modal-create/modal-create.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -17,12 +20,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomePageComponent,
     TicketPageComponent,
     ManagementPageComponent,
-    MonthlyReportPageComponent
+    MonthlyReportPageComponent,
+    ModalCreateComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCardModule
   ],
 
   exports: [

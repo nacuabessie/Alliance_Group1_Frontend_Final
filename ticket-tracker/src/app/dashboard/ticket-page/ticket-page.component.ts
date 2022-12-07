@@ -1,31 +1,24 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Ticket } from 'src/app/service/ticket/ticket';
 import { TicketService } from 'src/app/service/ticket/ticket.service';
 import { Users } from 'src/app/service/user/user';
 
 import { UsersService } from 'src/app/service/user/user.service';
-
+import { ModalCreateComponent } from '../modal-create/modal-create.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-ticket-page',
   templateUrl: './ticket-page.component.html',
   styleUrls: ['./ticket-page.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
 export class TicketPageComponent implements OnInit {
   constructor(
-    private userService: UsersService,
+    private userService: UsersService,   
+    private toast: HotToastService,
     private ticketService: TicketService,
     private dialog: MatDialog,
     private router: Router
@@ -44,6 +37,7 @@ export class TicketPageComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     search: new FormControl('', Validators.required),
   });
+  
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       (data: Users[]) => {
@@ -94,8 +88,18 @@ export class TicketPageComponent implements OnInit {
     );
   }
 
-  openPopup() {
-    this.displayStyle = "block";
+
+  modalCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true;
+    dialogConfig.width =  "80%";
+    dialogConfig.panelClass = 'post-dialog-container',
+    this.dialog.open(ModalCreateComponent,dialogConfig);
+    this.getAllTicket();
+  }
+  closePopup() {
+    this.displayStyle = "none";
   }
 
 }
