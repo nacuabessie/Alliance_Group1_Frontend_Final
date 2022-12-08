@@ -89,12 +89,12 @@
             </thead>
             <tbody *ngFor="let user of user$; let i = index">
                 <tr>
-                    <th scope="row" style="font-weight: 400;">{{ user.user_firstname }} {{user.user_lastname}}</th>
+                    <th scope="row" style="font-weight: 400; font-size: 18px;letter-spacing: normal;">{{ user.user_firstname }} {{user.user_lastname}}</th>
                     <td>{{ user.user_name }}</td>
                     <td>{{ user.email }}</td>
 
                     <td>
-                        <button style="border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"> Edit </button>
+                        <button style="background-color: #73408B; color: white; border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"> Edit </button>
                         <button style="border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" type="button" class="btn btn-danger btn-sm ">
               Delete
             </button>
@@ -102,6 +102,7 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot><button id="addButton">+</button></tfoot>
         </table>
     </div>
 

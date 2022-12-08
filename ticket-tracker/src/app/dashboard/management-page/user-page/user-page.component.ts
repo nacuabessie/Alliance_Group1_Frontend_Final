@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { Ticket } from 'src/app/service/ticket/ticket';
 import { TicketService } from 'src/app/service/ticket/ticket.service';
 import { Users } from 'src/app/service/user/user';
 import { UsersService } from 'src/app/service/user/user.service';
-import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
-  selector: 'app-management-page',
-  templateUrl: './management-page.component.html',
-  styleUrls: ['./management-page.component.scss']
+  selector: 'app-user-page',
+  templateUrl: './user-page.component.html',
+  styleUrls: ['./user-page.component.scss']
 })
-export class ManagementPageComponent implements OnInit {
-
+export class UserPageComponent {
   constructor(
     private userService: UsersService,
     private ticketService: TicketService,
@@ -81,10 +79,3 @@ export class ManagementPageComponent implements OnInit {
   }
 
 }
-
-
-// $(document).ready(function() {
-//   $('[data-toggle="toggle"]').change(function(){
-//     $(this).parents().next('.hide').toggle();
-//   });
-// });

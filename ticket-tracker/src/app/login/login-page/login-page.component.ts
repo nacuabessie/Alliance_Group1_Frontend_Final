@@ -52,8 +52,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Users } from 'src/app/service/user/user';
 import { UsersService } from 'src/app/service/user/user.service';
-import { ForgotComponent } from 'src/app/forgetpass/forgetpass.component';
-
+import { ForgotpassPageComponent } from 'src/app/forgotpass-page/forgotpass-page.component';
 
 @Component({
   selector: 'app-login-page',
@@ -73,76 +72,56 @@ export class LoginComponent implements OnInit {
   }
   count : number = 0;
   found : boolean = false;
-  postUser: Users;
-  authen: Users[]=[];
+  toUser: Users;
+  auth: Users[]=[];
   ngOnInit(): void {  
   }
   loginForm: FormGroup = new FormGroup({
     emailLogin: new FormControl('', Validators.required, ),
     passLogin: new FormControl('', Validators.required)
   });
-  registerForm: FormGroup = new FormGroup({
-    registerEmailAdd: new FormControl('', Validators.required),
-    registerLastName: new FormControl('', Validators.required),
-    registerUserName: new FormControl('', Validators.required),
-    registerFirstName: new FormControl('', Validators.required),
-    registerPassword: new FormControl('', Validators.required)
-  });
+ 
   onSubmitLogin(){
     
-    // if(this.loginForm.invalid){
-    //   this.toast.error("Complete your Login!");
-    //   return;
-    // }
-    this.userService.getAllUsers().subscribe((data: Users[])=>{
-      this.authen=data;      
-    },(error: any)=>{
-        this.toast.error(error); 
-      });
-    this.userService.getUserByEmail(this.loginForm.value.emailLogin).subscribe((data: Users)=>{
-      this.postUser = data;
-      if(this.postUser.password == this.loginForm.value.passLogin  ){
-        this.toast.success(`Welcome ${this.postUser.user_name}!`);
-        this.nav("dashboard");
-      }else{
-        this.toast.error("Incorrect Password!");
-        return;
+    if (this.loginForm.invalid) {
+      this.toast.error('Complete your Login!');
+      return;
+    }
+    this.userService.getAllUsers().subscribe(
+      (data: Users[]) => {
+        this.auth = data;
+      },
+      (error: any) => {
+        this.toast.error(error);
       }
-      
-    },(error: any)=>{
-      this.toast.error("Invalid Login"); 
-    }); 
+    );
+    this.userService.getUserByEmail(this.loginForm.value.emailLogin).subscribe(
+      (data: Users) => {
+        this.toUser = data['data'];
+        if (this.toUser.password == this.loginForm.value.passLogin) {
+          console.log(this.toUser);
+          this.toast.success(`Welcome ${this.toUser.user_firstname}!`);
+          this.toUser.logged_in = 'true';
+          this.updateLoggedIn(this.toUser);
+
+          this.nav('/client');
+
+          this.userService.getPassUserValue(this.toUser);
+        } else {
+          this.toast.error('Incorrect Password!');
+          return;
+        }
+      },
+      (error: any) => {
+        this.toast.error('Invalid Login');
+      }
+    );
 
     //end subs
     
       
       
       
-  }
-  onSubmitRegister(){
-    if(this.registerForm.invalid){
-      this.toast.error("Invalid Registration!");
-      return;
-    }
-    const payload: Users = {
-     
-      email: this.registerForm.value.registerEmailAdd,
-      user_name: this.registerForm.value.registerName,
-      name: this.registerForm.value.registerUserName,
-      password:  this.registerForm.value.registerPassword,
-      image_link: this.registerForm.value.image_link,
-      
-    };
-    this.userService.saveUser(payload).pipe(this.toast.observe({
-      success: "Registered Successfully!",
-      loading: "Processing",
-      error: (message: any) => `${message}`
-    })).subscribe((data: Users) => {
-      this.postUser = data;
-      this.nav("user-dashboard");
-    });
-    
-    this.registerForm.reset();
   }
   nav(destination: string) {
     this.router.navigate([destination]);
@@ -153,6 +132,28 @@ export class LoginComponent implements OnInit {
       dialogConfig.autoFocus = true;
       dialogConfig.width =  "60%";
       dialogConfig.panelClass = 'post-dialog-container',
-      this.dialog.open(ForgotComponent,dialogConfig);
+      this.dialog.open(ForgotpassPageComponent,dialogConfig);
+  }
+
+  updateLoggedIn(userUpdate: Users) {
+    console.log('test update', userUpdate);
+    let updateFormData = new FormData();
+    updateFormData.append('user_id', userUpdate.user_id.toString());
+    updateFormData.append('fName', userUpdate.user_firstname);
+    updateFormData.append('lName', userUpdate.user_lastname.toString());
+    updateFormData.append('email', userUpdate.email.toString());
+    updateFormData.append('user_name', userUpdate.user_name.toString());
+    updateFormData.append('password', userUpdate.password);
+    updateFormData.append('logged_in', 'true');
+    this.userService
+      .updateUser(updateFormData)
+      .pipe(
+        this.toast.observe({
+          error: (message: any) => `${message}`,
+        })
+      )
+      .subscribe((data: number) => {
+        //this.temp = data;
+      });
   }
 }

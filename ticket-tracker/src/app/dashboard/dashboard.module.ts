@@ -5,10 +5,11 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TicketPageComponent } from './ticket-page/ticket-page.component';
-import { ManagementPageComponent } from './management-page/management-page.component';
+//import { ManagementPageComponent } from '../Management-page/user-page/user-page.component';
 import { MonthlyReportPageComponent } from './monthly-report-page/monthly-report-page.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ManagementPageComponent } from './management-page/management-page.component';
 
 
 @NgModule({

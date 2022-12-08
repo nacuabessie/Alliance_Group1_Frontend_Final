@@ -23,15 +23,11 @@ h2 {
     border: none;
 }
 
-.card .table {
-    text-align: center;
-}
-
 #addButton {
     margin: auto;
     position: relative;
     top: 10px;
-    left: 500px;
+    left: 350px;
     padding: 10px;
     width: 40px;
     font-size: 20px;
@@ -39,6 +35,10 @@ h2 {
     color: #fff;
     border: 0px;
     border-radius: 50px;
+}
+
+.card .table {
+    text-align: center;
 }
 
 .card th {

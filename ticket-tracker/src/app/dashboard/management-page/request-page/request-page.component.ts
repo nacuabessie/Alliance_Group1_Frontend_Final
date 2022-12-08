@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,13 +9,12 @@ import { TicketService } from 'src/app/service/ticket/ticket.service';
 import { Users } from 'src/app/service/user/user';
 
 import { UsersService } from 'src/app/service/user/user.service';
-
 @Component({
-  selector: 'app-ticket-page',
-  templateUrl: './ticket-page.component.html',
-  styleUrls: ['./ticket-page.component.scss']
+  selector: 'app-request-page',
+  templateUrl: './request-page.component.html',
+  styleUrls: ['./request-page.component.scss']
 })
-export class TicketPageComponent implements OnInit {
+export class RequestPageComponent {
   constructor(
     private userService: UsersService,
     private ticketService: TicketService,
@@ -53,7 +53,30 @@ export class TicketPageComponent implements OnInit {
       }
     );
   }
-  
+  updateTicket(ticket: Ticket) {
+    //   const payload: Ticket = {
+    //     assignee: "asd",
+    //     tracker: "3test",
+    //     description: "5",
+    //     subject: "6",
+    //     status: "Resolved",
+    //   };
+    //   this.ticketService.updateTicket(ticket_id,payload).subscribe((data: number)=>{
+    //     this.singleTicket = data;
+    //     this.getAllTicket();
+    //   });
+    //
+
+    // console.log(`from ticket ${ticket.id}`);
+    // const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = false;
+    // dialogConfig.autoFocus = true;
+    // dialogConfig.width = '60%';
+    // (dialogConfig.panelClass = 'post-dialog-container'),
+    //   this.dialog.open(UpdateTicketComponent, dialogConfig);
+    // console.log(`ticket ${ticket}`);
+    // this.ticketService.getPassTicketValue(ticket);
+  }
 
   displayStyle = "none";
   displayEditStyle = "none";
