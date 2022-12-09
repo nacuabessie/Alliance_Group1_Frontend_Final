@@ -8,10 +8,11 @@
       class="add"
       (click)="openmodalCreate()">Create 
     </button>
- </div>  
+ </div> 
+ <div style="height: 400px; overflow-y: auto">
   <table class="table table-striped" *ngIf="tickets.length > 0; else noTickets">
-      <thead class="theader">
-          <tr>
+      <thead>
+          <tr class="header">
               <th scope="col">TICKET ID</th>
               <th scope="col">ASSIGNEE</th>
               <th scope="col">SENDER</th>
@@ -46,7 +47,7 @@
           </tr>
       </tbody>
   </table>
-
+</div> 
   <ng-template #noTickets>
     <hr />
     <h5>There are no tickets listed!</h5>

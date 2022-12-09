@@ -9,10 +9,11 @@ import { HttpClient } from '@angular/common/http';
 import { Users } from 'src/app/service/user/user';
 
 import { UsersService } from 'src/app/service/user/user.service';
+import { CategoryService } from 'src/app/service/category/category.service';
 
 @Component({
   selector: 'app-modal-create',
-  providers: [ UsersService ],
+  providers: [ UsersService, CategoryService ],
   templateUrl: './modal-create.component.html',
   styleUrls: ['./modal-create.component.scss']
 })
@@ -26,11 +27,13 @@ export class ModalCreateComponent implements OnInit{
     private HttpClient: HttpClient,
     private ticketService: TicketService,
     private userService: UsersService,
+    private categoryService: CategoryService,
     private router: Router,
     private fb: FormBuilder,
   ) { }
 
   users: any[] = [];
+  categors: any[] = [];
 
     form = this.fb.group({
       ticketstatus:[''],
@@ -52,7 +55,7 @@ export class ModalCreateComponent implements OnInit{
       formData.append('assignee', this.selectedassignee);
       formData.append('status', '1');
       formData.append('subject', this.f.ticketsubject.value!);
-      formData.append('category', this.f.ticketcategory.value!);
+      formData.append('category', this.selectedcategory);
       formData.append('description', this.f.ticketdescription.value!);
       formData.append('deadline', this.f.ticketdeadline.value!);
       formData.append('document_Path', this.f.ticketfile.value!);
@@ -66,15 +69,26 @@ export class ModalCreateComponent implements OnInit{
     }
 
     selectedassignee: string='';
+    selectedcategory: string='';
 
     chooseAssignee(assignee: any){
       this.selectedassignee = assignee.target.value;
     }
+
+    chooseCategory(category: any){
+      this.selectedcategory = category.target.value;
+    }
+    
   ngOnInit(): void {
     console.log("NGONINIT")
     this.userService.getAllUsers().subscribe((result) => {
       this.users = result['data'];
     })
+
+    this.categoryService.showTicketCategories().subscribe((result) => {
+      this.categors = result['data'];
+      console.log(this.categors);
+        })
   }
 
  

@@ -14,20 +14,19 @@
                 <label for="assign" class="form-label">Assignee:</label>
                 <select name="dropdown" (change)="chooseAssignee($event)">
                     <option hidden selected>select</option>
-                    <option value="{{users[i]['user_id?']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
-                </select>
-                
+                    <option value="{{users[i]['user_id']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
+                </select>                
             </div>
             <div class="sub">
                 <label for="subject" class="form-label">Subject:</label>
                 <br>
                 <input type="text" formControlName="ticketsubject">
             </div>
-            <div class="cat col">
+            <!-- <div class="cat col">
                 <label for="stat" class="form-label">Status</label>
                 <br>
                 <input type="text" formControlName="ticketcategory">
-            </div>
+            </div> -->
             <div class="description">
                 <label for="description" class="form-label">Description:</label>
                 <br>
@@ -35,14 +34,16 @@
             </div>
 
             <div class="file">
-                <label for="subject" class="form-label">File Upload</label>
+                <label for="fileUp" class="form-label">File Upload</label>
                 <br>
-                <input type="text" formControlName="ticketfile" aria-label="subject">
+                <input type="text" formControlName="ticketfile" aria-label="fileUp">
             </div>
-            <div class="cat col">
-                <label for="tracker" class="form-label">Ticket Category:</label>
-                <br>
-                <input type="text" formControlName="ticketcategory">
+            <div class="category col">
+                <label for="category" class="form-label">Category:</label>
+                <select name="dropdown" (change)="chooseCategory($event)">
+                    <option hidden selected>Select</option>
+                    <option value="{{categors[i]['ticketCategory_id']}}" *ngFor="let cat of categors; index as i ">{{cat.ticketCategory_name}}</option>
+                </select>  
             </div>
 
             <div class="deadline">
@@ -51,17 +52,6 @@
                 <input type="text" formControlName="ticketdeadline">
             </div>
 
-
-            <!-- <div class="input-box">
-              <i class="fa fa-key"></i>
-                <input matInput [matDatepicker]= "datePicker" placeholder="Pick-up Date"[min]="minDate"[max]="maxDate"[(ngModel)]="getDate" [ngModelOptions]="{standalone: true}">
-                
-                <mat-datepicker-toggle [for]= "datePicker" matSuffix>
-                  <mat-datepicker #datePicker>
-                  </mat-datepicker>
-                </mat-datepicker-toggle>
-             
-            </div> -->
                 
                 <div class="buttons input-box">
                     <button type="button" (click)="onSubmitCreate()">Create</button>                
