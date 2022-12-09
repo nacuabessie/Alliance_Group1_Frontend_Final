@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalCreateComponent } from './modal-create/modal-create.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule} from '@angular/material/card';
+import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { ModalUpdateComponent } from './modal-update/modal-update.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { MatCardModule} from '@angular/material/card';
     TicketPageComponent,
     ManagementPageComponent,
     MonthlyReportPageComponent,
-    ModalCreateComponent
+    ModalCreateComponent,
+    ModalDeleteComponent,
+    ModalUpdateComponent
   ],
   imports: [
     CommonModule,

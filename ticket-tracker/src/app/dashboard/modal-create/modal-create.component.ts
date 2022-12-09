@@ -96,8 +96,4 @@ export class ModalCreateComponent implements OnInit{
   close(){
     this.dialog.closeAll();
   }
-  nav(destination: string) {
-    this.router.navigate([destination]);
-  }
-
 }

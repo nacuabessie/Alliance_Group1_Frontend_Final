@@ -56,6 +56,8 @@ export class TicketService {
       .put(`http://localhost:8080/ticket/update`, ticket)
       .pipe(map((resp) => resp));
   }
+
+  
   refreshTicket() {
     return this.getAllTickets().subscribe(
       (data: Ticket[]) => {

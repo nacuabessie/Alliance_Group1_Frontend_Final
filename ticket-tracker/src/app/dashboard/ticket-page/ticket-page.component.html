@@ -33,12 +33,20 @@
               <td>{{ ticket.subject }}</td>
               <td>{{ ticket.description}}</td>
               <td class="button">
-                  <button type="button" class="btn btn-primary">
+                  <button 
+                  type="button" 
+                  class="btn btn-primary"
+                  (click)="openModalUpdate()"
+                  >
                     <span class="material-symbols-outlined">
                       edit
                       </span>
                   </button>
-                  <button type="button" class="btn btn-danger">
+                  <button 
+                  type="button" 
+                  class="btn btn-danger"
+                  (click)="openModaldelete()"
+                  >
                     <span class="material-symbols-outlined">
                       delete
                       </span>
