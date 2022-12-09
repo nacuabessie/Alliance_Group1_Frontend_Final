@@ -1,0 +1,106 @@
+<h2>| Management</h2>
+
+<nav class="navbar navbar-expand-lg " id="navbarborder">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" id="textcurrent" routerLink="/management/user">User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/management/role">Role</a>
+            </li>
+            <li class="nav-item active" id="current">
+                <a class="nav-link" id="textcurrent">Request</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- <button style="padding: 10px" type="button" class="add" (click)="openPopup()">Add
+</button> -->
+<div class="card">
+    <!-- <div class="card-header">
+
+        <button style="padding: 10px" type="button" class="add" (click)="openPopup()">Add
+        </button>
+    </div> -->
+
+
+    <div *ngIf="tickets.length > 0; else noTickets" class="usersTable">
+        <table class="table table-striped">
+            <thead class="theader">
+                <tr>
+                    <th scope="col" style="width: 0em;">REQUEST ID</th>
+
+                    <th scope="col" style="width: 10em;">ASSIGNEE</th>
+                    <th scope="col" style="width: 10em;">SENDER</th>
+                    <th scope="col" style="width: 10em;">CATEGORY</th>
+                    <th scope="col" style="width: 5em;">SUBJECT</th>
+                    <th scope="col" style="width: 30em;">DESCRIPTION</th>
+                    <th scope="col" style="width: 20em;">DEADLINE</th>
+                    <th scope="col" style="width: 10em;">STATUS</th>
+
+                    <th scope="col" style="width: 30em;">ACTIONS</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let ticket of tickets; let i = index">
+                <tr data-toggle="modal" data-id="ticket.id" data-target="#orderModal">
+                    <th scope="row" style="font-weight: 400;">{{ ticket.id }}</th>
+                    <td>{{ ticket.assignee }}</td>
+                    <td>{{ ticket.sender }}</td>
+                    <td>{{ ticket.category }}</td>
+                    <td>{{ ticket.subject }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ticket.deadline}}</td>
+                    <td>{{ ticket.status }}</td>
+
+
+                    <td class="button">
+                        <button type="button" class="btn btn-primary" style="background-color: #73408B; border: none;">
+                          <span class="material-icons md-47">
+                            edit
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-primary" style="background-color: #73408B; border: none;">
+                            <span class="material-icons md-40">
+                                remove_red_eye
+                              </span>
+                          </button>
+                        <button type="button" class="btn btn-danger" style="background-color: #73408B; border: none;">
+                          <span class="material-icons md-48">
+                            delete
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot><button id="addButton" (click)="openmodalCreate()">+</button></tfoot>
+        </table>
+    </div>
+
+</div>
+<!-- <button (click)="logout() ">Log out!</button> -->
+<ng-template #noTickets>
+    <hr />
+    <h5>There are no tickets listed!</h5>
+</ng-template>
+
+<!-- <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            This is the expansion title
+        </mat-panel-title>
+        <mat-panel-description>
+            This is a summary of the content
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+</mat-expansion-panel> -->
+
+
+<router-outlet></router-outlet>

@@ -48,12 +48,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Users } from 'src/app/service/user/user';
 import { UsersService } from 'src/app/service/user/user.service';
-import { ForgotComponent } from 'src/app/forgetpass/forgetpass.component';
-
+import { ForgotpassPageComponent } from 'src/app/forgotpass-page/forgotpass-page.component';
+import { get } from 'jquery';
 
 @Component({
   selector: 'app-login-page',
@@ -67,51 +67,88 @@ export class LoginComponent implements OnInit {
     private userService: UsersService,
     private toast: HotToastService,
     private dialog: MatDialog,
+    private fb: FormBuilder
     ) { 
 
    
   }
   count : number = 0;
   found : boolean = false;
-  postUser: Users;
-  authen: Users[]=[];
+  toUser: Users;
+  auth: Users[]=[];
   ngOnInit(): void {  
+    this.loginForm.value.emailLogin
   }
   loginForm: FormGroup = new FormGroup({
     emailLogin: new FormControl('', Validators.required, ),
     passLogin: new FormControl('', Validators.required)
   });
-  registerForm: FormGroup = new FormGroup({
-    registerEmailAdd: new FormControl('', Validators.required),
-    registerLastName: new FormControl('', Validators.required),
-    registerUserName: new FormControl('', Validators.required),
-    registerFirstName: new FormControl('', Validators.required),
-    registerPassword: new FormControl('', Validators.required)
-  });
+ form = this.fb.group({
+  emailLogin:[''],
+  passLogin: [''],
+});
+get f(){
+  return this.form.controls;
+}
+nav(destination: string) {
+  this.router.navigate([destination]);
+}
   onSubmitLogin(){
-    
-    // if(this.loginForm.invalid){
-    //   this.toast.error("Complete your Login!");
-    //   return;
-    // }
-    this.userService.getAllUsers().subscribe((data: Users[])=>{
-      this.authen=data;      
-    },(error: any)=>{
-        this.toast.error(error); 
-      });
-    this.userService.getUserByEmail(this.loginForm.value.emailLogin).subscribe((data: Users)=>{
-      this.postUser = data;
-      if(this.postUser.password == this.loginForm.value.passLogin  ){
-        this.toast.success(`Welcome ${this.postUser.user_name}!`);
-        this.nav("dashboard");
-      }else{
-        this.toast.error("Incorrect Password!");
-        return;
+    if(this.form.invalid){
+      return;
+    }
+    // let formData: FormData = new FormData();
+    // formData.append('email', this.f.emailLogin.value!);
+    //   formData.append('password', this.f.passLogin.value!);
+ if (this.loginForm.invalid) {
+      this.toast.error('Complete your Login!');
+      return;
+    }
+    this.userService.getUser(Number(this.toUser.user_id))
+    .subscribe((result)=>{
+      if(result['body']['data']!=null){
+        this.router.navigate(['dashboard']);
       }
-      
-    },(error: any)=>{
-      this.toast.error("Invalid Login"); 
-    }); 
+    });
+
+    
+   
+    // this.userService.getAllUsers().subscribe(
+    //   (data: Users[]) => {
+    //     this.auth = data;
+    //   },
+    //   (error: any) => {
+    //     this.toast.error(error);
+    //   }
+    // );
+    
+    // this.userService.getUser(this.toUser.user_id).subscribe(
+    //   (data: Users) => {
+    //     this.toUser = data['data']; 
+    //     if (this.toUser.email == this.loginForm.value.emailLogin) {
+    //     if (this.toUser.password == this.loginForm.value.passLogin) {
+          
+    //       // this.toast.success(`Welcome ${this.toUser.user_firstname}!`);
+    //       this.toUser.logged_in = 'true';
+    //       this.updateLoggedIn(this.toUser);
+    //       if (this.toUser.role_id == 1) {
+    //         this.nav('/admin');
+    //       } else if (this.toUser.role_id == 2) {
+    //         this.nav('/client');
+    //       }
+
+    //       this.userService.getPassUserValue(this.toUser);
+    //     } else {
+    //       this.toast.error('Incorrect Password!');
+    //       return;
+    //     }
+    //   }
+    // },
+    //   (error: any) => {
+    //     this.toast.error('Invalid Login');
+    //   }
+    // );
+
 
     //end subs
     
@@ -119,40 +156,35 @@ export class LoginComponent implements OnInit {
       
       
   }
-  onSubmitRegister(){
-    if(this.registerForm.invalid){
-      this.toast.error("Invalid Registration!");
-      return;
-    }
-    const payload: Users = {
-     
-      email: this.registerForm.value.registerEmailAdd,
-      user_name: this.registerForm.value.registerName,
-      name: this.registerForm.value.registerUserName,
-      password:  this.registerForm.value.registerPassword,
-      image_link: this.registerForm.value.image_link,
-      
-    };
-    this.userService.saveUser(payload).pipe(this.toast.observe({
-      success: "Registered Successfully!",
-      loading: "Processing",
-      error: (message: any) => `${message}`
-    })).subscribe((data: Users) => {
-      this.postUser = data;
-      this.nav("user-dashboard");
-    });
-    
-    this.registerForm.reset();
-  }
-  nav(destination: string) {
-    this.router.navigate([destination]);
-  }
+  
   onOpenForgot( ){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true
       dialogConfig.autoFocus = true;
       dialogConfig.width =  "60%";
       dialogConfig.panelClass = 'post-dialog-container',
-      this.dialog.open(ForgotComponent,dialogConfig);
+      this.dialog.open(ForgotpassPageComponent,dialogConfig);
+  }
+
+  updateLoggedIn(userUpdate: Users) {
+    console.log('test update', userUpdate);
+    let updateFormData = new FormData();
+    updateFormData.append('user_id', userUpdate.user_id.toString());
+    updateFormData.append('user_firstname', userUpdate.user_firstname);
+    updateFormData.append('user_lastname', userUpdate.user_lastname.toString());
+    updateFormData.append('email', userUpdate.email.toString());
+    updateFormData.append('user_name', userUpdate.user_name.toString());
+    updateFormData.append('password', userUpdate.password);
+    updateFormData.append('logged_in', 'true');
+    this.userService
+      .updateUser(userUpdate.user_id)
+      .pipe(
+        this.toast.observe({
+          error: (message: any) => `${message}`,
+        })
+      )
+      .subscribe((data:any) => {
+        //this.temp = data;
+      });
   }
 }

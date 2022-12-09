@@ -1,4 +1,5 @@
-<h2>| Management</h2>
+<h2>
+    | Management</h2>
 
 <nav class="navbar navbar-expand-lg " id="navbarborder">
 
@@ -26,7 +27,7 @@
         <button style="padding: 10px" type="button" class="add" (click)="openPopup()">Add
         </button>
     </div> -->
-    <div class="modal modal-lg" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <!-- <div class="modal modal-lg" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,23 +74,25 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div *ngIf="user$.length > 0; else noUsers" class="usersTable">
         <table class="table table-striped">
             <thead class="theader">
                 <tr>
+                    <th scope="col">USER ID</th>
                     <th scope="col" style="width:28%;">NAME</th>
 
-                    <th scope="col">USERNAME</th>
-                    <th scope="col">EMAIL</th>
+                    <th scope="col" style="width:25%;">USERNAME</th>
+                    <th scope="col" style="width:25%;">EMAIL</th>
                     <th scope="col" style="width: 100em;">ACTIONS</th>
 
                 </tr>
             </thead>
             <tbody *ngFor="let user of user$; let i = index">
                 <tr>
-                    <th scope="row" style="font-weight: 400;">{{ user.user_firstname }} {{user.user_lastname}}</th>
+                    <th scope="row">{{ user.user_id }}</th>
+                    <td style="font-weight: 400; font-size: 18px;letter-spacing: normal;">{{ user.user_firstname }} {{user.user_lastname}}</td>
                     <td>{{ user.user_name }}</td>
                     <td>{{ user.email }}</td>
 
@@ -107,6 +110,7 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot><button id="addButton" (click)="openUserCreate()">+</button></tfoot>
         </table>
     </div>
 

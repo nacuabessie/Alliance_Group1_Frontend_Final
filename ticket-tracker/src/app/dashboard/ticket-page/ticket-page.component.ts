@@ -7,10 +7,14 @@ import { TicketService } from 'src/app/service/ticket/ticket.service';
 import { Users } from 'src/app/service/user/user';
 
 import { UsersService } from 'src/app/service/user/user.service';
+
 import { ModalCreateComponent } from '../modal-create/modal-create.component';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 import { ModalUpdateComponent } from '../modal-update/modal-update.component';
+
+import { ModalCreateComponent } from './modal-create/modal-create.component';
+
 
 @Component({
   selector: 'app-ticket-page',
@@ -40,7 +44,6 @@ export class TicketPageComponent implements OnInit {
     this.getAllTicket();
   }
 
-  
   searchForm: FormGroup = new FormGroup({
     search: new FormControl('', Validators.required),
   });
@@ -151,6 +154,7 @@ export class TicketPageComponent implements OnInit {
   
   viewStatus(value: any){
     this.isViewing = value;
+
   }
 
 }
