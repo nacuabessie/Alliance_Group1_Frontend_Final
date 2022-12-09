@@ -1,0 +1,65 @@
+<div class="card">
+    
+    <form class="inputs" [formGroup]="form">
+       <div class="form-group">
+            <div class="title">Update Ticket</div>
+            <div class="fields row mb-5">
+
+
+            <div class="assignee">
+                <label for="assign" class="form-label">Assignee:</label>
+                <select name="dropdown" (change)="chooseAssignee($event)">
+                    <option hidden selected>select</option>
+                    <option value="{{users[i]['user_id']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
+                </select>                
+            </div>
+            <div class="ticket">
+                <label for="TicektID" class="form-label">Ticket ID: {{updatedTicket.id}}</label>
+
+            </div>
+            <div class="sub">
+                <label for="subject" class="form-label">Subject:</label>
+                <br>
+                <input type="text" formControlName="ticketsubject">
+            </div>
+            <div class="description">
+                <label for="description" class="form-label">Description:</label>
+                <br>
+                <input type="text" formControlName="ticketdescription">
+            </div>
+
+            <div class="file">
+                <label for="fileUp" class="form-label">File Upload</label>
+                <br>
+                <input type="text" formControlName="ticketfile" aria-label="fileUp">
+            </div>
+            <div class="category col">
+                <label for="category" class="form-label">Category:</label>
+                <select name="dropdown" (change)="chooseCategory($event)">
+                    <option hidden selected>Select</option>
+                    <option value="{{categors[i]['ticketCategory_id']}}" *ngFor="let cat of categors; index as i ">{{cat.ticketCategory_name}}</option>
+                </select>  
+            </div>
+            <div class="status">
+                <label for="status" class="form-label">Status:</label>
+                <select name="dropdown" (change)="chooseStatus($event)">
+                    <option hidden selected>Select</option>
+                    <option value="{{statuses[i]['statusId']}}" *ngFor="let status of statuses; index as i ">{{status.statusName}}</option>
+                </select>  
+            </div>
+
+            <div class="deadline">
+                <label for="classtype" class="form-label">Deadline:</label>
+                <br>
+                <input type="text" formControlName="ticketdeadline">
+            </div>
+
+                
+                <div class="buttons input-box">
+                    <button type="button" (click)="onUpdateTicket()">Update</button>                
+                    <button  (click)="onClose()">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>

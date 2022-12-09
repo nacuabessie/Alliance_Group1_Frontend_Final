@@ -51,11 +51,13 @@ export class TicketService {
   // updateTicket(ticket: Ticket){
   //   return this.http.
   // }
-  updateTicket(ticket_id: number, ticket: FormData) {
+  updateTicket(ticket: FormData) {
     return this.http
-      .put(`http://localhost:8080/ticket/update`, ticket)
+      .post(`http://localhost:8080/ticket/create`, ticket)
       .pipe(map((resp) => resp));
   }
+
+  
   refreshTicket() {
     return this.getAllTickets().subscribe(
       (data: Ticket[]) => {

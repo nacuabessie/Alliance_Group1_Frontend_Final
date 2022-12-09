@@ -1,0 +1,43 @@
+<div class="card">
+    
+    <form class="inputs" [formGroup]="form">
+       <div class="form-group">
+            <div class="title">View Ticket {{viewedTicket.id}}</div>
+            <div class="fields row mb-5">
+
+            <div class="assignee">
+                <label for="assign" class="form-label">Assignee: {{viewedTicket.assignee}}</label>             
+            </div>
+            <div class="ticket">
+                <label for="TicektID" class="form-label">Ticket ID: {{viewedTicket.id}}</label>
+
+            </div>
+            <div class="sub">
+                <label for="subject" class="form-label">Subject: {{viewedTicket.subject}}</label>
+            </div>
+            <div class="description">
+                <label for="description" class="form-label">Description: {{viewedTicket.description}}</label>
+            </div>
+
+            <div class="file">
+                <label for="fileUp" class="form-label">File Upload: {{viewedTicket.document_path}}</label>
+            </div>
+            <div class="category col">
+                <label for="category" class="form-label">Category: {{viewedTicket.category}}</label>
+            </div>
+            <div class="status">
+                <label for="status" class="form-label">Status: {{viewedTicket.status}}</label>
+            </div>
+
+            <div class="deadline">
+                <label for="classtype" class="form-label">Deadline: {{viewedTicket.deadline}}</label>
+            </div>
+
+                
+                <div class="buttons input-box">             
+                    <button (click)="onClose()">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>

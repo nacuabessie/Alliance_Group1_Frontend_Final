@@ -9,7 +9,16 @@ import { TicketPageComponent } from './ticket-page/ticket-page.component';
 import { MonthlyReportPageComponent } from './monthly-report-page/monthly-report-page.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { ModalCreateComponent } from './modal-create/modal-create.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule} from '@angular/material/card';
+import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { ModalUpdateComponent } from './modal-update/modal-update.component';
+import { ModalViewTicketsComponent } from './modal-view-tickets/modal-view-tickets.component';
+
 import { ManagementPageComponent } from './management-page/management-page.component';
+
 
 
 @NgModule({
@@ -18,12 +27,18 @@ import { ManagementPageComponent } from './management-page/management-page.compo
     HomePageComponent,
     TicketPageComponent,
     ManagementPageComponent,
-    MonthlyReportPageComponent
+    MonthlyReportPageComponent,
+    ModalCreateComponent,
+    ModalDeleteComponent,
+    ModalUpdateComponent,
+    ModalViewTicketsComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCardModule
   ],
 
   exports: [

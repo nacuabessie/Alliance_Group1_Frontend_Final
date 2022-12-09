@@ -62,9 +62,13 @@ saveUser(user: FormData){
   // return this.http.post("http://localhost:8080/user/create",user).pipe(map(resp=>resp));
 }
 
-getUser(user_id: number){
-  return this.http.get(`http://localhost:8080/user/${user_id}`)
-  .pipe(map(resp=>resp));
+
+postTicket(ticket:any){
+  return this.http.post("http://localhost:8080/ticket/create",this.users).pipe(map(resp=>resp));
+}
+
+addTicket(){
+  return this.http.post("http://localhost:8080/ticket/create",this.users).pipe(map(resp=>resp));
 }
 
 updateUser(user_id: number) {
