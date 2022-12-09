@@ -29,7 +29,6 @@ import { UserPageComponent } from './dashboard/management-page/user-page/user-pa
 import { RolePageComponent } from './dashboard/management-page/role-page/role-page.component';
 import { RequestPageComponent } from './dashboard/management-page/request-page/request-page.component';
 import { ForgotpassPageComponent } from './forgotpass-page/forgotpass-page.component';
-import { ModalCreateComponent } from './dashboard/ticket-page/modal-create/modal-create.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CreateUserComponent } from './dashboard/management-page/user-page/user-modal/create-user/create-user.component';
 import { CreateRoleComponent } from './dashboard/management-page/role-page/create-role/create-role.component';
@@ -45,7 +44,6 @@ import { CreateRoleComponent } from './dashboard/management-page/role-page/creat
     RolePageComponent,
     RequestPageComponent,
     ForgotpassPageComponent,
-    ModalCreateComponent,
     CreateUserComponent,
     CreateRoleComponent
     //LoginPageComponent,

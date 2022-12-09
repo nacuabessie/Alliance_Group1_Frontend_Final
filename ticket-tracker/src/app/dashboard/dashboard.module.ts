@@ -18,6 +18,7 @@ import { ModalUpdateComponent } from './modal-update/modal-update.component';
 import { ModalViewTicketsComponent } from './modal-view-tickets/modal-view-tickets.component';
 
 import { ManagementPageComponent } from './management-page/management-page.component';
+import { RequestModalCreateComponent } from './management-page/request-page/request-modal-create/request-modal-create.component';
 
 
 
@@ -31,7 +32,8 @@ import { ManagementPageComponent } from './management-page/management-page.compo
     ModalCreateComponent,
     ModalDeleteComponent,
     ModalUpdateComponent,
-    ModalViewTicketsComponent
+    ModalViewTicketsComponent,
+    RequestModalCreateComponent
   ],
   imports: [
     CommonModule,

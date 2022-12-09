@@ -13,8 +13,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 import { ModalUpdateComponent } from '../modal-update/modal-update.component';
 
-import { ModalCreateComponent } from './modal-create/modal-create.component';
-
 
 @Component({
   selector: 'app-ticket-page',

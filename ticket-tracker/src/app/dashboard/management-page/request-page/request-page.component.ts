@@ -10,7 +10,7 @@ import { TicketService } from 'src/app/service/ticket/ticket.service';
 import { Users } from 'src/app/service/user/user';
 
 import { UsersService } from 'src/app/service/user/user.service';
-import { ModalCreateComponent } from '../../ticket-page/modal-create/modal-create.component';
+import { RequestModalCreateComponent } from './request-modal-create/request-modal-create.component';
 @Component({
   selector: 'app-request-page',
   templateUrl: './request-page.component.html', 
@@ -88,7 +88,7 @@ export class RequestPageComponent {
     dialogConfig.width =  "50%";
     dialogConfig.height =  "80%";
     dialogConfig.panelClass = 'post-dialog-container',
-    this.dialog.open(ModalCreateComponent,dialogConfig);
+    this.dialog.open(RequestModalCreateComponent,dialogConfig);
     this.getAllTicket();
   }
 
