@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router'; 
 import { Ticket } from 'src/app/service/ticket/ticket';
 import { TicketService } from 'src/app/service/ticket/ticket.service';
@@ -9,6 +9,8 @@ import { UsersService } from 'src/app/service/user/user.service';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { Roles } from 'src/app/service/role/role';
 import { RoleService } from 'src/app/service/role/role.service';
+import { CreateUserComponent } from '../user-page/user-modal/create-user/create-user.component';
+import { CreateRoleComponent } from './create-role/create-role.component';
 @Component({
   selector: 'app-role-page',
   templateUrl: './role-page.component.html',
@@ -42,7 +44,17 @@ export class RolePageComponent {
       }
     );
   }
-  
+  openRoleCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true;
+    dialogConfig.width =  "50%";
+    dialogConfig.height =  "80%";
+    dialogConfig.panelClass = 'post-dialog-container',
+    this.dialog.open(CreateRoleComponent,dialogConfig);
+    this.getAllRoles();
+  }
+
   displayStyle = "none";
   displayEditStyle = "none";
   openPopup() {

@@ -28,86 +28,58 @@
         <button style="padding: 10px" type="button" class="add" (click)="openPopup()">Add
         </button>
     </div> -->
-    <div class="modal modal-lg" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Ticket</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="row g-3">
-                        <div class="col-md-6">
-                            <label for="ticketid" class="form-label">User ID:</label>
-                            <input type="text" class="form-control" aria-label="First name">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="assignee" class="form-label">First Name:</label>
-                            <input type="text" class="form-control" aria-label="Last name">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="status" class="form-label">Status:</label>
-                            <input type="text" class="form-control" aria-label="status">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="subject" class="form-label">Subject:</label>
-                            <input type="text" class="form-control" aria-label="subject">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="tracker" class="form-label">Tracker:</label>
-                            <input type="text" class="form-control" aria-label="tracker">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="classtype" class="form-label">Class Type:</label>
-                            <input type="text" class="form-control" aria-label="classtype">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description:</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
-                        </div>
-                    </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">
-          Close
-        </button>
-                    <button type="button" class="btn btn-primary">Add</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div *ngIf="tickets.length > 0; else noTickets" class="usersTable">
         <table class="table table-striped">
             <thead class="theader">
                 <tr>
-                    <th scope="col">ASSIGNEE</th>
-                    <th scope="col">SENDER</th>
-                    <th scope="col">CATEGORY</th>
-                    <th scope="col">SUBJECT</th>
-                    <th scope="col">DESCRIPTION</th>
-                    <th scope="col" style="width: 100em;">ACTIONS</th>
+                    <th scope="col" style="width: 0em;">REQUEST ID</th>
+
+                    <th scope="col" style="width: 10em;">ASSIGNEE</th>
+                    <th scope="col" style="width: 10em;">SENDER</th>
+                    <th scope="col" style="width: 10em;">CATEGORY</th>
+                    <th scope="col" style="width: 5em;">SUBJECT</th>
+                    <th scope="col" style="width: 30em;">DESCRIPTION</th>
+                    <th scope="col" style="width: 20em;">DEADLINE</th>
+                    <th scope="col" style="width: 10em;">STATUS</th>
+
+                    <th scope="col" style="width: 30em;">ACTIONS</th>
 
                 </tr>
             </thead>
             <tbody *ngFor="let ticket of tickets; let i = index">
-                <tr>
-                    <th scope="row" style="font-weight: 400;">{{ ticket.assignee }}</th>
+                <tr data-toggle="modal" data-id="ticket.id" data-target="#orderModal">
+                    <th scope="row" style="font-weight: 400;">{{ ticket.id }}</th>
+                    <td>{{ ticket.assignee }}</td>
                     <td>{{ ticket.sender }}</td>
                     <td>{{ ticket.category }}</td>
                     <td>{{ ticket.subject }}</td>
                     <td>{{ ticket.description }}</td>
+                    <td>{{ticket.deadline}}</td>
+                    <td>{{ ticket.status }}</td>
 
-                    <td>
-                        <button style="border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"> Edit </button>
-                        <button style="border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" type="button" class="btn btn-danger btn-sm ">
-              Delete
-            </button>
-                        <!-- <img src="{{user.image_link}}" alt="image" height="200px" width="200px"> -->
+
+                    <td class="button">
+                        <button type="button" class="btn btn-primary" style="background-color: #73408B; border: none;">
+                          <span class="material-icons md-47">
+                            edit
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-primary" style="background-color: #73408B; border: none;">
+                            <span class="material-icons md-40">
+                                remove_red_eye
+                              </span>
+                          </button>
+                        <button type="button" class="btn btn-danger" style="background-color: #73408B; border: none;">
+                          <span class="material-icons md-48">
+                            delete
+                            </span>
+                        </button>
                     </td>
                 </tr>
             </tbody>
-            <tfoot><button id="addButton">+</button></tfoot>
+            <tfoot><button id="addButton" (click)="openmodalCreate()">+</button></tfoot>
         </table>
     </div>
 
@@ -117,6 +89,7 @@
     <hr />
     <h5>There are no tickets listed!</h5>
 </ng-template>
+
 <!-- <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
         <mat-panel-title>

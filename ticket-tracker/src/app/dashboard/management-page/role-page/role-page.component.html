@@ -79,29 +79,35 @@
         <table class="table table-striped">
             <thead class="theader">
                 <tr>
+                    <th scope="col">ROLE ID</th>
                     <th scope="col" style="width:28%;">INITIALS</th>
 
-                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col" style="width:40%;">DESCRIPTION</th>
                     <th scope="col" style="width: 100em;">ACTIONS</th>
 
                 </tr>
             </thead>
             <tbody *ngFor="let role of role$; let i = index">
                 <tr>
-                    <th scope="row" style="font-weight: 400;">{{ role.initials }}</th>
+                    <th scope="row">{{ role.id }}</th>
+                    <td style="font-weight: 500;">{{ role.initials }}</td>
                     <td>{{ role.description }}</td>
 
-                    <td>
-
-                        <button style="border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"> Edit </button>
-                        <button style="border-radius:5px;height:40px;width:100px;border:none;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" type="button" class="btn btn-danger btn-sm ">
-              Delete
-            </button>
-                        <!-- <img src="{{user.image_link}}" alt="image" height="200px" width="200px"> -->
+                    <td class="button">
+                        <button type="button" class="btn btn-primary" style="background-color: #73408B; border: none;">
+                          <span class="material-icons md-47">
+                            edit
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-danger" style="background-color: #73408B; border: none;">
+                          <span class="material-icons md-48">
+                            delete
+                            </span>
+                        </button>
                     </td>
                 </tr>
             </tbody>
-            <tfoot><button id="addButton">+</button></tfoot>
+            <tfoot><button id="addButton" (click)="openRoleCreate()">+</button></tfoot>
         </table>
     </div>
 

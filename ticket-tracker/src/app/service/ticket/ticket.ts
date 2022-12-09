@@ -7,4 +7,6 @@ export interface Ticket{
     subject: string,
     description: string,
     file_location: string,
+    deadline: string,
+    
 }

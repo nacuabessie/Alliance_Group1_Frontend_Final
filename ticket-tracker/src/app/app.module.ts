@@ -9,10 +9,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login-page/login-page.component';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
 //import { UsersService } from './../services/users/users.service';
 //import { HotToastService } from '@ngneat/hot-toast';
+import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon'
 import { HotToastModule } from '@ngneat/hot-toast';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +27,10 @@ import { UserPageComponent } from './dashboard/management-page/user-page/user-pa
 import { RolePageComponent } from './dashboard/management-page/role-page/role-page.component';
 import { RequestPageComponent } from './dashboard/management-page/request-page/request-page.component';
 import { ForgotpassPageComponent } from './forgotpass-page/forgotpass-page.component';
+import { ModalCreateComponent } from './dashboard/ticket-page/modal-create/modal-create.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { CreateUserComponent } from './dashboard/management-page/user-page/user-modal/create-user/create-user.component';
+import { CreateRoleComponent } from './dashboard/management-page/role-page/create-role/create-role.component';
 //import { UserPageComponent } from './app/user-page/user-page.component';
 //import { ManagementPageComponent } from './Management-page/user-page/user-page.component';
 
@@ -32,7 +42,10 @@ import { ForgotpassPageComponent } from './forgotpass-page/forgotpass-page.compo
     UserPageComponent,
     RolePageComponent,
     RequestPageComponent,
-    ForgotpassPageComponent
+    ForgotpassPageComponent,
+    ModalCreateComponent,
+    CreateUserComponent,
+    CreateRoleComponent
     //LoginPageComponent,
   ],
   exports: [
@@ -44,7 +57,10 @@ import { ForgotpassPageComponent } from './forgotpass-page/forgotpass-page.compo
   imports: [
     MatExpansionModule,
     CommonModule,
+    MatSidenavModule,
+    ReactiveFormsModule,
     //LoginModule,
+    MatDividerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -53,7 +69,13 @@ import { ForgotpassPageComponent } from './forgotpass-page/forgotpass-page.compo
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
+    MatIconModule,
+    MatListModule,
+    
     MatInputModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
     HotToastModule.forRoot(),
     BrowserAnimationsModule,
     DashboardModule,

@@ -85,7 +85,7 @@ export class ForgotpassPageComponent {
       this.confirmPasswordForm.value.password
     );
     this.userService
-      .updateUser(updateFormData)
+      .updateUser(userUpdate.user_id)
       .pipe(
         this.toast.observe({
           success: 'Password Changed Successfully!',
@@ -93,7 +93,7 @@ export class ForgotpassPageComponent {
           error: (message: any) => `${message}`,
         })
       )
-      .subscribe((data: number) => {
+      .subscribe((data: any) => {
         this.temp = data;
       });
   }

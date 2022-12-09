@@ -27,8 +27,11 @@ export class RoleService {
   );
   }
 
-  saveRole(role: Roles){
-    return this.http.post("http://localhost:8080/role/create",role).pipe(map(resp=>resp));
+  saveRole(role: FormData){
+    return this.http
+    .post("http://localhost:8080/role/create",role)
+    .pipe(map((resp) => resp));
+    // return this.http.post("http://localhost:8080/role/create",role).pipe(map(resp=>resp));
   }
   postRole(role:any){
     return this.http.post("http://localhost:8080/role/create",this.roles).pipe(map(resp=>resp));

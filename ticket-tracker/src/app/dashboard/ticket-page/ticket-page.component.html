@@ -1,41 +1,76 @@
-<div class="header">
-    <h2>Tickets</h2>
-    <button>
-      style="padding: 10px"
-      type="button"
-      class="add"
-      (click)="openPopup()">Add
-    </button>
-</div>
-
-<div *ngIf="tickets.length > 0; else noTickets">
-
-    <!--START CARD-->
-    <div *ngFor="let ticket of tickets; let i = index" class="card">
-        <h2 class="card-header">Ticket ID: {{ ticket.id }}</h2>
-        <div class="card-body">
-            <h2>Assignee</h2>
-            <p>{{ ticket.assignee }}</p>
-            <h2>Sender</h2>
-            <p>{{ ticket.sender }}</p>
-            <h2>Category</h2>
-            <p>{{ ticket.category }}</p>
-            <h2>Subject</h2>
-            <p>{{ ticket.subject }}</p>
-            <h2>Description</h2>
-            <p>{{ ticket.description}}</p>
-            <br/>
-
-        </div>
-
+<div class="card">
+    <div class="card-header">
+        Ticket-List
+        <button style="padding: 10px" type="button" class="add" (click)="openmodalCreate()">Create 
+      </button>
     </div>
-    <!--END CARD-->
+    <table class="table table-striped" *ngIf="tickets.length > 0; else noTickets">
+        <thead class="theader">
+            <tr>
+                <th scope="col">TICKET ID</th>
+                <th scope="col">ASSIGNEE</th>
+                <th scope="col">SENDER</th>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">SUBJECT</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let ticket of tickets; let i = index">
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.assignee }}</td>
+                <td>{{ ticket.sender }}</td>
+                <td>{{ ticket.category }}</td>
+                <td>{{ ticket.status }}</td>
+                <td>{{ ticket.subject }}</td>
+                <td>{{ ticket.description}}</td>
+                <td class="button">
+                    <button type="button" class="btn btn-primary" style="background-color: #73408B; border: none;">
+                      <span class="material-symbols-outlined">
+                        edit
+                        </span>
+                    </button>
+                    <button type="button" class="btn btn-danger" style="background-color: #73408B; border: none;">
+                      <span class="material-symbols-outlined">
+                        delete
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noTickets>
+        <hr />
+        <h5>There are no tickets listed!</h5>
+    </ng-template>
+
 </div>
 
-<!-- <button (click)="logout()">Log out!</button> -->
-<ng-template #noTickets>
-    <hr />
-    <h5>There are no tickets listed!</h5>
-</ng-template>
+<!-- <div *ngIf="tickets.length > 0; else noTickets">
+    
+  
+        <div *ngFor="let ticket of tickets; let i = index" class="card">
+          <h2 class="card-header">Ticket ID: {{ ticket.id }}</h2>
+          <div class="card-body row">
+          <h2>Assignee</h2>
+          <p>{{ ticket.assignee }}</p>
+          <h2>Sender</h2>
+          <p>{{ ticket.sender }}</p>
+          <h2>Category</h2>
+          <p>{{ ticket.category }}</p>
+          <h2>Subject</h2>
+          <p>{{ ticket.subject }}</p>
+          <h2>Description</h2>
+          <p>{{ ticket.description}}</p>
+          <br/>
+  
+          </div>
+  
+        </div>
+   </div>    -->
+
 
 <router-outlet></router-outlet>

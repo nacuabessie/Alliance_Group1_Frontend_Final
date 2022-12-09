@@ -48,11 +48,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Users } from 'src/app/service/user/user';
 import { UsersService } from 'src/app/service/user/user.service';
 import { ForgotpassPageComponent } from 'src/app/forgotpass-page/forgotpass-page.component';
+import { get } from 'jquery';
 
 @Component({
   selector: 'app-login-page',
@@ -66,6 +67,7 @@ export class LoginComponent implements OnInit {
     private userService: UsersService,
     private toast: HotToastService,
     private dialog: MatDialog,
+    private fb: FormBuilder
     ) { 
 
    
@@ -75,47 +77,78 @@ export class LoginComponent implements OnInit {
   toUser: Users;
   auth: Users[]=[];
   ngOnInit(): void {  
+    this.loginForm.value.emailLogin
   }
   loginForm: FormGroup = new FormGroup({
     emailLogin: new FormControl('', Validators.required, ),
     passLogin: new FormControl('', Validators.required)
   });
- 
+ form = this.fb.group({
+  emailLogin:[''],
+  passLogin: [''],
+});
+get f(){
+  return this.form.controls;
+}
+nav(destination: string) {
+  this.router.navigate([destination]);
+}
   onSubmitLogin(){
-    
-    if (this.loginForm.invalid) {
+    if(this.form.invalid){
+      return;
+    }
+    // let formData: FormData = new FormData();
+    // formData.append('email', this.f.emailLogin.value!);
+    //   formData.append('password', this.f.passLogin.value!);
+ if (this.loginForm.invalid) {
       this.toast.error('Complete your Login!');
       return;
     }
-    this.userService.getAllUsers().subscribe(
-      (data: Users[]) => {
-        this.auth = data;
-      },
-      (error: any) => {
-        this.toast.error(error);
+    this.userService.getUser(Number(this.toUser.user_id))
+    .subscribe((result)=>{
+      if(result['body']['data']!=null){
+        this.router.navigate(['dashboard']);
       }
-    );
-    this.userService.getUserByEmail(this.loginForm.value.emailLogin).subscribe(
-      (data: Users) => {
-        this.toUser = data['data'];
-        if (this.toUser.password == this.loginForm.value.passLogin) {
-          console.log(this.toUser);
-          this.toast.success(`Welcome ${this.toUser.user_firstname}!`);
-          this.toUser.logged_in = 'true';
-          this.updateLoggedIn(this.toUser);
+    });
 
-          this.nav('/client');
+    
+   
+    // this.userService.getAllUsers().subscribe(
+    //   (data: Users[]) => {
+    //     this.auth = data;
+    //   },
+    //   (error: any) => {
+    //     this.toast.error(error);
+    //   }
+    // );
+    
+    // this.userService.getUser(this.toUser.user_id).subscribe(
+    //   (data: Users) => {
+    //     this.toUser = data['data']; 
+    //     if (this.toUser.email == this.loginForm.value.emailLogin) {
+    //     if (this.toUser.password == this.loginForm.value.passLogin) {
+          
+    //       // this.toast.success(`Welcome ${this.toUser.user_firstname}!`);
+    //       this.toUser.logged_in = 'true';
+    //       this.updateLoggedIn(this.toUser);
+    //       if (this.toUser.role_id == 1) {
+    //         this.nav('/admin');
+    //       } else if (this.toUser.role_id == 2) {
+    //         this.nav('/client');
+    //       }
 
-          this.userService.getPassUserValue(this.toUser);
-        } else {
-          this.toast.error('Incorrect Password!');
-          return;
-        }
-      },
-      (error: any) => {
-        this.toast.error('Invalid Login');
-      }
-    );
+    //       this.userService.getPassUserValue(this.toUser);
+    //     } else {
+    //       this.toast.error('Incorrect Password!');
+    //       return;
+    //     }
+    //   }
+    // },
+    //   (error: any) => {
+    //     this.toast.error('Invalid Login');
+    //   }
+    // );
+
 
     //end subs
     
@@ -123,9 +156,7 @@ export class LoginComponent implements OnInit {
       
       
   }
-  nav(destination: string) {
-    this.router.navigate([destination]);
-  }
+  
   onOpenForgot( ){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true
@@ -139,20 +170,20 @@ export class LoginComponent implements OnInit {
     console.log('test update', userUpdate);
     let updateFormData = new FormData();
     updateFormData.append('user_id', userUpdate.user_id.toString());
-    updateFormData.append('fName', userUpdate.user_firstname);
-    updateFormData.append('lName', userUpdate.user_lastname.toString());
+    updateFormData.append('user_firstname', userUpdate.user_firstname);
+    updateFormData.append('user_lastname', userUpdate.user_lastname.toString());
     updateFormData.append('email', userUpdate.email.toString());
     updateFormData.append('user_name', userUpdate.user_name.toString());
     updateFormData.append('password', userUpdate.password);
     updateFormData.append('logged_in', 'true');
     this.userService
-      .updateUser(updateFormData)
+      .updateUser(userUpdate.user_id)
       .pipe(
         this.toast.observe({
           error: (message: any) => `${message}`,
         })
       )
-      .subscribe((data: number) => {
+      .subscribe((data:any) => {
         //this.temp = data;
       });
   }

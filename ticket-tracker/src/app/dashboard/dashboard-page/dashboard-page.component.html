@@ -1,3 +1,25 @@
+<!-- <mat-nav-list>
+    <div class="logo py-4">
+        <img src="./assets/logo.svg" alt="Company Logo" />
+    </div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader class="mt-2">APPLICATIONS</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+        <mat-icon>home</mat-icon> Home
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+    <a mat-list-item>
+        <mat-icon>edit</mat-icon> Link 3 </a>
+    <a mat-list-item>
+        <mat-icon>edit</mat-icon> Link 4 </a>
+    <a mat-list-item>
+        <mat-icon>edit</mat-icon> Link 5 </a>
+    <a mat-list-item>
+        <mat-icon>edit</mat-icon> Link 6 </a>
+</mat-nav-list> -->
 <div class="wrap">
     <nav class="navbar navbar-expand-lg" style="background-color: white;">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,23 +45,28 @@
 
 <div class="btn-group-vertical btn-group-lg">
 
-    <button class="btn" type="button" 
-        routerLinkActive="active" 
-        routerLink="home"        
-        >
-        Home
+    <button class="btn" type="button" routerLinkActive="active" routerLink="home"><a
+          class="nav-link"
+          aria-current="page"
+        >Home</a>
       </button>
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="ticket">
-        Tickets
+    <button class="btn" type="button" routerLinkActive="active" routerLink="ticket"><a
+          class="nav-link"
+          aria-current="page"
+        >Tickets</a>
       </button>
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="management">
-        Management
+    <button class="btn" type="button" routerLinkActive="active" routerLink="management/user"><a
+          class="nav-link"
+          aria-current="page"
+        >Management</a>
       </button>
 
-    <button class="btn" type="button" routerLinkActive="active" routerLink="monthly-report">
-        Monthly Report
+    <button class="btn" type="button" routerLinkActive="active" routerLink="monthly-report"><a
+          class="nav-link"
+          aria-current="page"
+        >Monthly Report</a>
       </button>
 
 </div>
