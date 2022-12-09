@@ -29,12 +29,17 @@ export class TicketPageComponent implements OnInit {
   users: Users[] = [];
   tickets: Ticket[] = [];
   singleTicket: number;
+  
+  selectedTicket: any;
+  isDeleting: boolean = false;
+  isUpdating: boolean = false;
+  isViewing: boolean = false;
+
   ngOnInit(): void {
     //this.getAllUsers();
     this.getAllTicket();
   }
-  displayStyle = "none";
-  displayEditStyle = "none";
+
   
   searchForm: FormGroup = new FormGroup({
     search: new FormControl('', Validators.required),
@@ -102,27 +107,50 @@ export class TicketPageComponent implements OnInit {
     this.getAllTicket();
   }
 
-  openModaldelete(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true;
-    dialogConfig.width =  "50%";
-    dialogConfig.panelClass = 'post-dialog-container',
-    this.dialog.open(ModalDeleteComponent,dialogConfig);
+  // openModaldelete(){
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width =  "50%";
+  //   dialogConfig.panelClass = 'post-dialog-container',
+  //   this.dialog.open(ModalDeleteComponent,dialogConfig);
+  // }
+
+  // openModalUpdate(){
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width =  "50%";
+  //   dialogConfig.height =  "80%";
+  //   dialogConfig.panelClass = 'post-dialog-container',
+  //   this.dialog.open(ModalUpdateComponent,dialogConfig);
+  // }
+  
+  onClickUpdate(i : number){
+    this.selectedTicket = this.tickets[i];
+    this.isUpdating = true;
   }
 
-  openModalUpdate(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true;
-    dialogConfig.width =  "50%";
-    dialogConfig.height =  "80%";
-    dialogConfig.panelClass = 'post-dialog-container',
-    this.dialog.open(ModalUpdateComponent,dialogConfig);
+  // onClickDelete(i : number){
+  //   this.selectedTicket = this.tickets[i];
+  //   this.isDeleting = true;
+  // }
+
+  onClickView(i : number){
+    this.selectedTicket = this.tickets[i];
+    this.isViewing = true;
   }
+
+  updateStatus(value: any){
+    this.isUpdating = value;
+  }
+
+  // deleteStatus(value : any){
+  //   this.isDeleting = value;
+  // }
   
-  closePopup() {
-    this.displayStyle = "none";
+  viewStatus(value: any){
+    this.isViewing = value;
   }
 
 }

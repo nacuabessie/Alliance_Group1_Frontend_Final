@@ -1,5 +1,4 @@
-
- <div class="card">
+<div class="card">
   <div class="card-header">
     Ticket-List
     <button
@@ -33,24 +32,24 @@
               <td>{{ ticket.subject }}</td>
               <td>{{ ticket.description}}</td>
               <td class="button">
-                  <button 
+              <button 
                   type="button" 
                   class="btn btn-primary"
-                  (click)="openModalUpdate()"
+                  (click)="onClickUpdate(i)"
                   >
                     <span class="material-symbols-outlined">
                       edit
                       </span>
-                  </button>
-                  <button 
+              </button>
+              <button 
                   type="button" 
                   class="btn btn-danger"
-                  (click)="openModaldelete()"
+                  (click)="onClickView(i)"
                   >
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </button>
+                  <span class="material-symbols-outlined">
+                    visibility
+                    </span>
+              </button>
               </td>
           </tr>
       </tbody>
@@ -60,31 +59,27 @@
     <hr />
     <h5>There are no tickets listed!</h5>
   </ng-template>
+  
+  <!-- <app-modal-delete
+
+*ngIf="isDeleting"
+[deletedTicket]="selectedTicket"
+(deleteStatus)="deleteStatus($event)"
+>
+</app-modal-delete> -->
+<app-modal-view-tickets
+*ngIf="isViewing"
+[viewedTicket]="selectedTicket"
+(viewStatus)="viewStatus($event)"
+></app-modal-view-tickets>
+
+<app-modal-update
+*ngIf="isUpdating"
+[updatedTicket]="selectedTicket"
+(updateStatus)="updateStatus($event)"
+></app-modal-update>
 
 </div>
 
- <!-- <div *ngIf="tickets.length > 0; else noTickets">
-  
-
-      <div *ngFor="let ticket of tickets; let i = index" class="card">
-        <h2 class="card-header">Ticket ID: {{ ticket.id }}</h2>
-        <div class="card-body row">
-        <h2>Assignee</h2>
-        <p>{{ ticket.assignee }}</p>
-        <h2>Sender</h2>
-        <p>{{ ticket.sender }}</p>
-        <h2>Category</h2>
-        <p>{{ ticket.category }}</p>
-        <h2>Subject</h2>
-        <p>{{ ticket.subject }}</p>
-        <h2>Description</h2>
-        <p>{{ ticket.description}}</p>
-        <br/>
-
-        </div>
-
-      </div>
- </div>    -->
- 
-
 <router-outlet></router-outlet>
+

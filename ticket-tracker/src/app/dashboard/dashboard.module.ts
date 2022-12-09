@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule} from '@angular/material/card';
 import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
 import { ModalUpdateComponent } from './modal-update/modal-update.component';
+import { ModalViewTicketsComponent } from './modal-view-tickets/modal-view-tickets.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ModalUpdateComponent } from './modal-update/modal-update.component';
     MonthlyReportPageComponent,
     ModalCreateComponent,
     ModalDeleteComponent,
-    ModalUpdateComponent
+    ModalUpdateComponent,
+    ModalViewTicketsComponent
   ],
   imports: [
     CommonModule,

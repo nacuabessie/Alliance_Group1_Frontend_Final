@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -15,6 +15,9 @@ import { UsersService } from 'src/app/service/user/user.service';
   styleUrls: ['./modal-update.component.scss']
 })
 export class ModalUpdateComponent {
+  @Input() updatedTicket : any;
+  @Output() updateStatus = new EventEmitter<boolean>();
+
   constructor(
     private dialog: MatDialog,
     private toast: HotToastService,
@@ -46,6 +49,7 @@ export class ModalUpdateComponent {
   onUpdateTicket(){
     let formData: FormData = new FormData();
 
+    formData.append('id', this.updatedTicket['id'])
     formData.append('assignee', this.selectedassignee);
     formData.append('status', this.selectedstatus);
     formData.append('subject', this.f.ticketsubject.value!);
@@ -54,6 +58,10 @@ export class ModalUpdateComponent {
     formData.append('deadline', this.f.ticketdeadline.value!);
     formData.append('document_Path', this.f.ticketfile.value!);
     formData.append('sender', '1');
+
+    this.ticketService.updateTicket(formData).subscribe(()=>{});
+    location.reload();
+    this.onClose()
 
   }
 
@@ -90,7 +98,7 @@ export class ModalUpdateComponent {
     })
   }
 
-  close(){
-    this.dialog.closeAll();
+  onClose(){
+    this.updateStatus.emit(false);
   }
 }
