@@ -20,6 +20,16 @@ const routes: Routes = [
       },
 
       {
+        path: 'management/user', component: UserPageComponent,
+          
+      },
+
+      {
+        path: 'management/role', component: RolePageComponent,
+          
+      },
+
+      {
         path: 'ticket', component: TicketPageComponent,
       },
       

@@ -14,7 +14,7 @@ const routes: Routes = [
   //   component: UserDashboardComponent,
   // },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
   },
 ];

@@ -152,3 +152,49 @@ button {
     width: 100px;
     border-radius: 100px;
 }
+
+.navbar-brand {
+    color: #73408B;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.btnlogout {
+    position: relative;
+    //float: right;
+    right: 43px;
+    border-radius: 30%;
+    border: 0;
+    width: 10;
+    background-color: #ffff;
+    size: 10em;
+    //background-color: #73408B;
+    color: #73408B;
+    size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.nav {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn {
+    font-family: 'Poppins', sans-serif;
+    background-color: #73408B;
+    color: white;
+    top: 50px;
+    left: 30px;
+}
+
+.btn:hover {
+    background-color: #b381ca;
+}
+
+.btn:focus,
+.btn:active {
+    background-color: #b381ca;
+    transition: none;
+}

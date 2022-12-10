@@ -61,7 +61,7 @@ export class UsersService {
     const params = new HttpParams().set('email', email)
       .set('password', password);
 
-    return this.http.get<any>(`http://localhost:8080/user/login`, {
+    return this.http.post<any>(`http://localhost:8080/user/login`, {
       observe: 'response',
       params: params,
     });
