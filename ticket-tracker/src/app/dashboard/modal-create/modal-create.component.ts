@@ -13,7 +13,7 @@ import { CategoryService } from 'src/app/service/category/category.service';
 
 @Component({
   selector: 'app-modal-create',
-  providers: [ UsersService, CategoryService ],
+  providers: [ UsersService, CategoryService],
   templateUrl: './modal-create.component.html',
   styleUrls: ['./modal-create.component.scss']
 })
@@ -63,7 +63,8 @@ export class ModalCreateComponent implements OnInit{
       
       console.log(formData);
 
-      this.ticketService.saveTicket(formData).subscribe(result =>{})
+      this.ticketService.saveTicket(formData).subscribe(result =>{});
+      location.reload();
       this.close();
 
     }
@@ -81,6 +82,7 @@ export class ModalCreateComponent implements OnInit{
     
   ngOnInit(): void {
     console.log("NGONINIT")
+
     this.userService.getAllUsers().subscribe((result) => {
       this.users = result['data'];
     })

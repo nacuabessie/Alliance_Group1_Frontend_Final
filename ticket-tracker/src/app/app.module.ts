@@ -32,13 +32,14 @@ import { ForgotpassPageComponent } from './forgotpass-page/forgotpass-page.compo
 import { MatDividerModule } from '@angular/material/divider';
 import { CreateUserComponent } from './dashboard/management-page/user-page/user-modal/create-user/create-user.component';
 import { CreateRoleComponent } from './dashboard/management-page/role-page/create-role/create-role.component';
+import { LoginModule } from './login/login.module';
 //import { UserPageComponent } from './app/user-page/user-page.component';
 //import { ManagementPageComponent } from './Management-page/user-page/user-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    // LoginComponent,
     ForgotpassPageComponent,
     UserPageComponent,
     RolePageComponent,
@@ -79,6 +80,7 @@ import { CreateRoleComponent } from './dashboard/management-page/role-page/creat
     HotToastModule.forRoot(),
     BrowserAnimationsModule,
     DashboardModule,
+    LoginModule
 
   ],
   providers: [],
