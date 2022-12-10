@@ -5,19 +5,6 @@
             <div class="title">Create New User</div>
             <div class="fields row mb-5">
 
-                <!-- <div class="ticket">
-                <label for="TicektID" class="form-label">Ticket ID:</label>
-                <br>
-                <input type="text" formControlName="ticketID">
-            </div> -->
-                <!-- <div class="assignee">
-                    <label for="assign" class="form-label">User:</label>
-                    <select name="dropdown" (change)="chooseAssignee($event)">
-                    <option hidden selected>select</option>
-                    <option value="{{users[i]['user_id?']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
-                </select>
-
-                </div> -->
                 <div class="username">
                     <label for="subject" class="form-label">User Name:</label>
                     <br>
@@ -44,18 +31,6 @@
                     <input type="password" formControlName="passwod">
                 </div>
 
-
-
-                <!-- <div class="input-box">
-              <i class="fa fa-key"></i>
-                <input matInput [matDatepicker]= "datePicker" placeholder="Pick-up Date"[min]="minDate"[max]="maxDate"[(ngModel)]="getDate" [ngModelOptions]="{standalone: true}">
-                
-                <mat-datepicker-toggle [for]= "datePicker" matSuffix>
-                  <mat-datepicker #datePicker>
-                  </mat-datepicker>
-                </mat-datepicker-toggle>
-             
-            </div> -->
 
                 <div class="buttons input-box">
                     <button type="button" (click)="onUserCreate()">Create</button>

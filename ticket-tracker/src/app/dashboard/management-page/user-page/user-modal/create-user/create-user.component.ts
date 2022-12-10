@@ -53,16 +53,13 @@ export class CreateUserComponent implements OnInit{
       formData.append('password', this.f.password.value!);
       console.log(formData);
 
-      this.userService.saveUser(formData).subscribe(result =>{})
+      this.userService.saveUser(formData).subscribe(result =>{});
+      location.reload();
       this.close();
 
     }
 
-    selectedassignee: string='';
-
-    chooseAssignee(assignee: any){
-      this.selectedassignee = assignee.target.value;
-    }
+    
   ngOnInit(): void {
     console.log("NGONINIT")
     this.userService.getAllUsers().subscribe((result) => {
