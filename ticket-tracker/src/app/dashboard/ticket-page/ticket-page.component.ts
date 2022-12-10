@@ -42,9 +42,6 @@ export class TicketPageComponent implements OnInit {
   isViewing: boolean = false;
 
   ngOnInit(): void {
-    //this.getAllUsers();
-    // this.getAllTicket();
-    // this.status$ = this.statusService.showStatuses();
 
     this.statusService.getStatuses().subscribe((result) => {
       this.status$ = result['data'];
@@ -89,17 +86,6 @@ export class TicketPageComponent implements OnInit {
       (data: Users[]) => {
         this.search = data['data'];
         for (let i = 0; i < this.search.length; i++) {
-          // if (this.search[i].subject.toLowerCase() === search.toLowerCase()) {
-          //   this.users.push(this.search[i]);
-          // } else if (
-          //   this.search[i].assignee.toLowerCase() === search.toLowerCase()
-          // ) {
-          //   this.users.push(this.search[i]);
-          // } else if (
-          //   this.search[i].status.toLowerCase() === search.toLowerCase()
-          // ) {
-          //   this.users.push(this.search[i]);
-          // }
         }
         if (!this.searchForm.valid) {
           this.users = this.search;
@@ -123,25 +109,6 @@ export class TicketPageComponent implements OnInit {
     this.getAllTicket();
   }
 
-  // openModaldelete(){
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true
-  //   dialogConfig.autoFocus = true;
-  //   dialogConfig.width =  "50%";
-  //   dialogConfig.panelClass = 'post-dialog-container',
-  //   this.dialog.open(ModalDeleteComponent,dialogConfig);
-  // }
-
-  // openModalUpdate(){
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true
-  //   dialogConfig.autoFocus = true;
-  //   dialogConfig.width =  "50%";
-  //   dialogConfig.height =  "80%";
-  //   dialogConfig.panelClass = 'post-dialog-container',
-  //   this.dialog.open(ModalUpdateComponent,dialogConfig);
-  // }
-
   onClickUpdate(i: number) {
     this.selectedTicket = this.tickets[i];
     this.isUpdating = true;
@@ -162,10 +129,6 @@ export class TicketPageComponent implements OnInit {
     this.isUpdating = value;
     this.convertBackToStatus();
   }
-
-  // deleteStatus(value : any){
-  //   this.isDeleting = value;
-  // }
 
   viewStatus(value: any) {
     this.isViewing = value;

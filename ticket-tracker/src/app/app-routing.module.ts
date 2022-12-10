@@ -9,10 +9,6 @@ const routes: Routes = [
     pathMatch: 'full',
     component: DashboardPageComponent,
   },
-  // {
-  //   path: 'user-dashboard',
-  //   component: UserDashboardComponent,
-  // },
   {
     path: '',
     component: LoginComponent,

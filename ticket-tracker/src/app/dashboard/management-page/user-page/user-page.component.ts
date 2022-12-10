@@ -19,14 +19,13 @@ export class UserPageComponent {
     private ticketService: TicketService,
     private dialog: MatDialog,
     private router: Router
-  ) {}
+  ) { }
   search: Users[] = [];
   user$: any = [];
   tickets: Ticket[] = [];
   img = this.user$.user_image;
   singleUser: number;
   ngOnInit(): void {
-    //this.getAllUsers();
     this.getAllUsers();
   }
   searchForm: FormGroup = new FormGroup({
@@ -49,17 +48,6 @@ export class UserPageComponent {
       (data: Users[]) => {
         this.search = data['data'];
         for (let i = 0; i < this.search.length; i++) {
-          // if (this.search[i].subject.toLowerCase() === search.toLowerCase()) {
-          //   this.users.push(this.search[i]);
-          // } else if (
-          //   this.search[i].assignee.toLowerCase() === search.toLowerCase()
-          // ) {
-          //   this.users.push(this.search[i]);
-          // } else if (
-          //   this.search[i].status.toLowerCase() === search.toLowerCase()
-          // ) {
-          //   this.users.push(this.search[i]);
-          // }
         }
         if (!this.searchForm.valid) {
           this.user$ = this.search;
@@ -74,10 +62,10 @@ export class UserPageComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true;
-    dialogConfig.width =  "50%";
-    dialogConfig.height =  "80%";
+    dialogConfig.width = "50%";
+    dialogConfig.height = "80%";
     dialogConfig.panelClass = 'post-dialog-container',
-    this.dialog.open(CreateUserComponent,dialogConfig);
+      this.dialog.open(CreateUserComponent, dialogConfig);
     this.getAllUsers();
   }
   displayStyle = "none";

@@ -23,28 +23,27 @@ export class RequestModalCreateComponent {
     private HttpClient: HttpClient,
     private ticketService: TicketService,
     private userService: UsersService,
-    // private categoryService: CategoryService,
     private router: Router,
     private fb: FormBuilder,
-  ){}
+  ) { }
 
   users: any[] = [];
 
   form_req = this.fb.group({
-    ticketstatus:[''],
-    ticketsubject:[''],
-    ticketdescription:[''],
-    ticketcategory:[''],
-    ticketdeadline:[''],
-    ticketassignee:[''],
-    ticketfile:[''],
+    ticketstatus: [''],
+    ticketsubject: [''],
+    ticketdescription: [''],
+    ticketcategory: [''],
+    ticketdeadline: [''],
+    ticketassignee: [''],
+    ticketfile: [''],
   })
 
-  get f(){
+  get f() {
     return this.form_req.controls;
   }
 
-  onSubmitCreate(){
+  onSubmitCreate() {
     let formData: FormData = new FormData();
 
     formData.append('assignee', this.selectedassignee);
@@ -55,41 +54,37 @@ export class RequestModalCreateComponent {
     formData.append('deadline', this.f.ticketdeadline.value!);
     formData.append('document_Path', this.f.ticketfile.value!);
     formData.append('sender', '1')
-    
+
     console.log(formData);
 
-    this.ticketService.saveTicket(formData).subscribe(result =>{})
+    this.ticketService.saveTicket(formData).subscribe(result => { })
     this.close();
 
   }
 
-  selectedassignee: string='';
-  selectedcategory: string='';
+  selectedassignee: string = '';
+  selectedcategory: string = '';
 
-  chooseAssignee(assignee: any){
+  chooseAssignee(assignee: any) {
     this.selectedassignee = assignee.target.value;
   }
-  chooseCategory(category: any){
+  chooseCategory(category: any) {
     this.selectedcategory = category.target.value;
   }
-ngOnInit(): void {
-  console.log("NGONINIT")
-  this.userService.getAllUsers().subscribe((result) => {
-    this.users = result['data'];
-  })
-  // this.categoryService.showTicketCategories().subscribe((result) => {
-  //   this.categors = result['data'];
-  //   console.log(this.categors);
-  //     })
-}
+  ngOnInit(): void {
+    console.log("NGONINIT")
+    this.userService.getAllUsers().subscribe((result) => {
+      this.users = result['data'];
+    })
+  }
 
 
-     
-close(){
-  this.dialog.closeAll();
-}
-nav(destination: string) {
-  this.router.navigate([destination]);
-}
+
+  close() {
+    this.dialog.closeAll();
+  }
+  nav(destination: string) {
+    this.router.navigate([destination]);
+  }
 
 }

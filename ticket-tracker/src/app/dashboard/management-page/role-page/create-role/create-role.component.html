@@ -1,74 +1,27 @@
 <div class="container">
-
-    <form class="inputs" [formGroup]="form_role">
-        <div class="form-group">
-            <div class="title">Create New Role</div>
-            <div class="fields row mb-5">
-
-                <!-- <div class="ticket">
-                <label for="TicektID" class="form-label">Ticket ID:</label>
-                <br>
-                <input type="text" formControlName="ticketID">
-            </div> -->
-                <!-- <div class="assignee">
-                    <label for="assign" class="form-label">User:</label>
-                    <select name="dropdown" (change)="chooseAssignee($event)">
-                    <option hidden selected>select</option>
-                    <option value="{{users[i]['user_id?']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
-                </select>
-
-                </div> -->
-                <div class="description">
-                    <label for="subject" class="form-label">Description:</label>
-                    <br>
-                    <input type="text" formControlName="description">
-                </div>
-                <div class="initials">
-                    <label for="subject" class="form-label">Initials:</label>
-                    <br>
-                    <input type="text" formControlName="initials">
-                </div>
-
-
-
-
-                <!-- <div class="input-box">
-              <i class="fa fa-key"></i>
-                <input matInput [matDatepicker]= "datePicker" placeholder="Pick-up Date"[min]="minDate"[max]="maxDate"[(ngModel)]="getDate" [ngModelOptions]="{standalone: true}">
-                
-                <mat-datepicker-toggle [for]= "datePicker" matSuffix>
-                  <mat-datepicker #datePicker>
-                  </mat-datepicker>
-                </mat-datepicker-toggle>
-             
-            </div> -->
-
-                <div class="buttons input-box">
-                    <button type="button" (click)="onRoleCreate()">Create</button>
-                    <button (click)="close()">Close</button>
-                </div>
-            </div>
+  <form class="inputs" [formGroup]="form_role">
+    <div class="form-group">
+      <div class="title">Create New Role</div>
+      <div class="fields row mb-5">
+        <div class="description">
+          <label for="subject" class="form-label">Description:</label>
+          <br />
+          <input type="text" formControlName="description" />
         </div>
-    </form>
+        <div class="initials">
+          <label for="subject" class="form-label">Initials:</label>
+          <br />
+          <input type="text" formControlName="initials" />
+        </div>
+
+        <div class="buttons input-box">
+          <button type="button" (click)="onRoleCreate()">Create</button>
+          <button (click)="close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- <div class="modal modal-lg" tabindex="-1" role="dialog">   
     <div class="modal-dialog" role="document">

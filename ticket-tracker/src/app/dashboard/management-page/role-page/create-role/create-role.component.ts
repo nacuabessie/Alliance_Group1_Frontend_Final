@@ -13,8 +13,6 @@ import { RoleService } from 'src/app/service/role/role.service';
   styleUrls: ['./create-role.component.scss']
 })
 export class CreateRoleComponent {
-   // postTicket: Ticket;
-  // refreshTicket: Ticket[] = [];
   constructor(
     private dialog: MatDialog,
     private toast: HotToastService,
@@ -26,36 +24,36 @@ export class CreateRoleComponent {
 
   users: any[] = [];
 
-    form_role = this.fb.group({
-      roleid:[''],
-      roledescription:[''],
-      roleinitials:[''],
-    })
+  form_role = this.fb.group({
+    roleid: [''],
+    roledescription: [''],
+    roleinitials: [''],
+  })
 
-    get f(){
-      return this.form_role.controls;
-    }
+  get f() {
+    return this.form_role.controls;
+  }
 
-    onRoleCreate(){
-      let roleData: FormData = new FormData();
+  onRoleCreate() {
+    let roleData: FormData = new FormData();
 
 
-      roleData.append('roleid', this.f.roleid.value!);
-      roleData.append('description', this.f.roledescription.value!);
-      roleData.append('initials', this.f.roleinitials.value!);
-      
-      console.log(roleData);
+    roleData.append('roleid', this.f.roleid.value!);
+    roleData.append('description', this.f.roledescription.value!);
+    roleData.append('initials', this.f.roleinitials.value!);
 
-      this.roleService.saveRole(roleData).subscribe(result =>{})
-      this.close();
+    console.log(roleData);
 
-    }
+    this.roleService.saveRole(roleData).subscribe(result => { })
+    this.close();
 
-    selectedassignee: string='';
+  }
 
-    chooseAssignee(assignee: any){
-      this.selectedassignee = assignee.target.value;
-    }
+  selectedassignee: string = '';
+
+  chooseAssignee(assignee: any) {
+    this.selectedassignee = assignee.target.value;
+  }
   ngOnInit(): void {
     console.log("NGONINIT")
     this.roleService.getAllRoles().subscribe((result) => {
@@ -63,9 +61,9 @@ export class CreateRoleComponent {
     })
   }
 
- 
-       
-  close(){
+
+
+  close() {
     this.dialog.closeAll();
   }
   nav(destination: string) {
