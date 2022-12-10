@@ -63,7 +63,8 @@ export class ModalCreateComponent implements OnInit{
       
       console.log(formData);
 
-      this.ticketService.saveTicket(formData).subscribe(result =>{})
+      this.ticketService.saveTicket(formData).subscribe(result =>{});
+      location.reload();
       this.close();
 
     }

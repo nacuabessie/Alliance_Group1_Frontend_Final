@@ -2,20 +2,22 @@
     
     <form class="inputs" [formGroup]="form">
        <div class="form-group">
-            <div class="title">Update Ticket</div>
+            <h1>Update Ticket</h1>
             <div class="fields row mb-5">
 
 
-            <div class="assignee">
+           
+            <div class="ticket">
+                <label for="TicektID" class="form-label">Ticket ID: {{updatedTicket.id}}</label>
+
+            </div>
+
+            <div class="assignee col">
                 <label for="assign" class="form-label">Assignee:</label>
                 <select name="dropdown" (change)="chooseAssignee($event)">
                     <option hidden selected>select</option>
                     <option value="{{users[i]['user_id']}}" *ngFor="let user of users; index as i ">{{user.user_name}}</option>
                 </select>                
-            </div>
-            <div class="ticket">
-                <label for="TicektID" class="form-label">Ticket ID: {{updatedTicket.id}}</label>
-
             </div>
             <div class="sub">
                 <label for="subject" class="form-label">Subject:</label>
@@ -56,10 +58,11 @@
 
                 
                 <div class="buttons input-box">
-                    <button type="button" (click)="onUpdateTicket()">Update</button>                
+                    <button type="button" (click)="onUpdateTicket()">Update</button>              
                     <button  (click)="onClose()">Close</button>
                 </div>
             </div>
         </div>
     </form>
     </div>
+

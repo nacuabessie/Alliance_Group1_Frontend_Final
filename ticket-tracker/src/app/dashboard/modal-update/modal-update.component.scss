@@ -1,0 +1,65 @@
+*{
+    margin: 6px;
+    padding:0;
+    font-family: "Poppins", sans-serif;
+}
+
+.card{
+    position: flex;
+    margin: 20px;
+    height: 100%;
+    width: 90%;
+    padding: 20px;  
+}
+
+h1{
+    background-color: #73408B;
+    padding: 15px;
+    color: white;
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-group label{
+    font-size: 20px;
+    margin-left: 20%;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-group .description input{
+    border-radius: 5px;
+    border: none;
+    width: 60%;
+    height: 90px;
+    background-color: #dbdbdb;
+}
+
+.form-group input{
+    border-radius: 5px;
+    margin-left: 20%;
+    border: none;
+    background-color: #dbdbdb;
+    width: 60%;
+    height: 60%;
+}
+
+.form-group button{
+    text-align: center;
+    left: 20%;
+    right: 20%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    background-color: #73408B;
+}
+
+.form-group .buttons{
+    margin-left: 30%;
+    margin-top: 5%;
+}
