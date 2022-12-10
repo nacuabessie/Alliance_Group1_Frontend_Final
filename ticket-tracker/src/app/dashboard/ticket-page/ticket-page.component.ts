@@ -12,6 +12,7 @@ import { ModalCreateComponent } from '../modal-create/modal-create.component';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 import { ModalUpdateComponent } from '../modal-update/modal-update.component';
+import { StatusService } from 'src/app/service/status/status.service';
 
 
 @Component({
@@ -21,17 +22,20 @@ import { ModalUpdateComponent } from '../modal-update/modal-update.component';
 })
 export class TicketPageComponent implements OnInit {
   constructor(
-    private userService: UsersService,   
+    private userService: UsersService,
     private toast: HotToastService,
     private ticketService: TicketService,
     private dialog: MatDialog,
-    private router: Router
-  ) {}
+    private router: Router,
+    private statusService: StatusService,
+  ) { }
   search: Users[] = [];
   users: Users[] = [];
-  tickets: Ticket[] = [];
+  tickets: any[] = [];
   singleTicket: number;
-  
+  status$: any[] = [];
+  category$: any[] = [];
+
   selectedTicket: any;
   isDeleting: boolean = false;
   isUpdating: boolean = false;
@@ -39,13 +43,24 @@ export class TicketPageComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getAllUsers();
-    this.getAllTicket();
+    // this.getAllTicket();
+    // this.status$ = this.statusService.showStatuses();
+
+    this.statusService.getStatuses().subscribe((result) => {
+      this.status$ = result['data'];
+      console.log(this.status$);
+    })
+
+    this.ticketService.getAllTickets().subscribe((result) => {
+      this.tickets = result['data'];
+      this.convertToStatusName();
+    });
   }
 
   searchForm: FormGroup = new FormGroup({
     search: new FormControl('', Validators.required),
   });
-  
+
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       (data: Users[]) => {
@@ -101,10 +116,10 @@ export class TicketPageComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true;
-    dialogConfig.width =  "50%";
-    dialogConfig.height =  "80%";
+    dialogConfig.width = "50%";
+    dialogConfig.height = "80%";
     dialogConfig.panelClass = 'post-dialog-container',
-    this.dialog.open(ModalCreateComponent,dialogConfig);
+      this.dialog.open(ModalCreateComponent, dialogConfig);
     this.getAllTicket();
   }
 
@@ -126,8 +141,8 @@ export class TicketPageComponent implements OnInit {
   //   dialogConfig.panelClass = 'post-dialog-container',
   //   this.dialog.open(ModalUpdateComponent,dialogConfig);
   // }
-  
-  onClickUpdate(i : number){
+
+  onClickUpdate(i: number) {
     this.selectedTicket = this.tickets[i];
     this.isUpdating = true;
   }
@@ -137,22 +152,64 @@ export class TicketPageComponent implements OnInit {
   //   this.isDeleting = true;
   // }
 
-  onClickView(i : number){
+  onClickView(i: number) {
+    console.log(this.status$);
     this.selectedTicket = this.tickets[i];
     this.isViewing = true;
   }
 
-  updateStatus(value: any){
+  updateStatus(value: any) {
     this.isUpdating = value;
+    this.convertBackToStatus();
   }
 
   // deleteStatus(value : any){
   //   this.isDeleting = value;
   // }
-  
-  viewStatus(value: any){
+
+  viewStatus(value: any) {
     this.isViewing = value;
 
   }
+  //CONVERT ALL STATUS 1 to PENDING
+  convertToStatusName() {
+    if (this.status$.length != 0) {
+      let status = this.status$;
+      this.tickets.forEach(function (
+        ticket) {
+        var result = status.find((obj: any) => {
+          return obj['statusId'] === ticket['status']
+        });
+        ticket['status'] = result['statusName'];
+      });
+    }
+  }
 
+  //PENDTING to 1
+  convertBackToStatus() {
+    var result = this.status$.find((obj: any) => {
+      return obj['statusName'] === this.selectedTicket['status'];
+    });
+    this.selectedTicket['status'] = result['status'];
+  }
+
+  convertToCategoryName() {
+    if (this.status$.length != 0) {
+      let status = this.status$;
+      this.tickets.forEach(function (
+        ticket) {
+        var result = status.find((obj: any) => {
+          return obj['statusId'] === ticket['status']
+        });
+        ticket['status'] = result['statusName'];
+      });
+    }
+  }
+
+  convertBackToCategory() {
+    var result = this.status$.find((obj: any) => {
+      return obj['statusName'] === this.selectedTicket['status'];
+    });
+    this.selectedTicket['status'] = result['status'];
+  }
 }

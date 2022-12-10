@@ -14,5 +14,9 @@ export class StatusService {
       .get('http://localhost:8080/status/all')
       .pipe(map((resp) => resp));
   }
+
+  getStatuses(){
+    return this.http.get('http://localhost:8080/status/all');
+  }
   
 }

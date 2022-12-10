@@ -5,61 +5,62 @@
       style="padding: 10px"
       type="button"
       class="add"
-      (click)="openmodalCreate()">Create 
+      (click)="openmodalCreate()"
+    >
+      Create
     </button>
- </div> 
- <div style="height: 400px; overflow-y: auto">
-  <table class="table table-striped" *ngIf="tickets.length > 0; else noTickets">
+  </div>
+  <div style="height: 400px; overflow-y: auto">
+    <table
+      class="table table-striped"
+      *ngIf="tickets.length > 0; else noTickets"
+    >
       <thead>
-          <tr class="header">
-              <th scope="col">TICKET ID</th>
-              <th scope="col">ASSIGNEE</th>
-              <th scope="col">SENDER</th>
-              <th scope="col">CATEGORY</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">SUBJECT</th>
-              <th scope="col">DESCRIPTION</th>
-              <th scope="col">ACTIONS</th>
-          </tr>
+        <tr class="header">
+          <th scope="col">TICKET ID</th>
+          <th scope="col">ASSIGNEE</th>
+          <th scope="col">SENDER</th>
+          <th scope="col">CATEGORY</th>
+          <th scope="col">STATUS</th>
+          <th scope="col">SUBJECT</th>
+          <th scope="col">DESCRIPTION</th>
+          <th scope="col">ACTIONS</th>
+        </tr>
       </thead>
       <tbody *ngFor="let ticket of tickets; let i = index">
-          <tr>
-              <td>{{ ticket.id }}</td>
-              <td>{{ ticket.assignee }}</td>
-              <td>{{ ticket.sender }}</td>
-              <td>{{ ticket.category }}</td>
-              <td>{{ ticket.status }}</td>
-              <td>{{ ticket.subject }}</td>
-              <td>{{ ticket.description}}</td>
-              <td class="button">
-              <button 
-                  type="button" 
-                  class="btn btn-primary"
-                  (click)="onClickUpdate(i)"
-                  >
-                    <span class="material-symbols-outlined">
-                      edit
-                      </span>
-              </button>
-              <button 
-                  type="button" 
-                  class="btn btn-danger"
-                  (click)="onClickView(i)"
-                  >
-                  <span class="material-symbols-outlined">
-                    visibility
-                    </span>
-              </button>
-              </td>
-          </tr>
+        <tr>
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.assignee }}</td>
+          <td>{{ ticket.sender }}</td>
+          <td>{{ ticket.category }}</td>
+          <td>{{ ticket.status }}</td>
+          <td>{{ ticket.subject }}</td>
+          <td>{{ ticket.description }}</td>
+          <td class="button">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="onClickUpdate(i)"
+            >
+              <span class="material-symbols-outlined"> edit </span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onClickView(i)"
+            >
+              <span class="material-symbols-outlined"> visibility </span>
+            </button>
+          </td>
+        </tr>
       </tbody>
-  </table>
-</div> 
+    </table>
+  </div>
   <ng-template #noTickets>
     <hr />
     <h5>There are no tickets listed!</h5>
   </ng-template>
-  
+
   <!-- <app-modal-delete
 
 *ngIf="isDeleting"
@@ -67,20 +68,17 @@
 (deleteStatus)="deleteStatus($event)"
 >
 </app-modal-delete> -->
-<app-modal-view-tickets
-*ngIf="isViewing"
-[viewedTicket]="selectedTicket"
-(viewStatus)="viewStatus($event)"
-></app-modal-view-tickets>
+  <app-modal-view-tickets
+    *ngIf="isViewing"
+    [viewedTicket]="selectedTicket"
+    (viewStatus)="viewStatus($event)"
+  ></app-modal-view-tickets>
 
-<app-modal-update
-*ngIf="isUpdating"
-[updatedTicket]="selectedTicket"
-(updateStatus)="updateStatus($event)"
-></app-modal-update>
-
+  <app-modal-update
+    *ngIf="isUpdating"
+    [updatedTicket]="selectedTicket"
+    (updateStatus)="updateStatus($event)"
+  ></app-modal-update>
 </div>
 
 <router-outlet></router-outlet>
-
-

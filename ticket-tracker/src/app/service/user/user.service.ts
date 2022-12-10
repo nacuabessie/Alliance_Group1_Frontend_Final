@@ -34,19 +34,7 @@ export class UsersService {
   }
 
   getAllUsers() {
-    return this.http.get("http://localhost:8080/user/all").pipe(
-      map((response: any) => {
-        var users = [];
-        for (const key in response) {
-          if (response.hasOwnProperty(key)) {
-            if (key === 'data') {
-              users.push(...(response as any)[key]);
-            }
-          }
-        }
-        return users;
-      })
-    );
+    return this.http.get("http://localhost:8080/user/all");
   }
 
   getUser(user_id: number) {

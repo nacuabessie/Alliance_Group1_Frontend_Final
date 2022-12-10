@@ -10,12 +10,12 @@ import { UsersService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-modal-update',
-  providers: [ UsersService, CategoryService, StatusService ],
+  providers: [UsersService, CategoryService, StatusService],
   templateUrl: './modal-update.component.html',
   styleUrls: ['./modal-update.component.scss']
 })
 export class ModalUpdateComponent {
-  @Input() updatedTicket : any;
+  @Input() updatedTicket: any;
   @Output() updateStatus = new EventEmitter<boolean>();
 
   constructor(
@@ -27,26 +27,26 @@ export class ModalUpdateComponent {
     private categoryService: CategoryService,
     private statusService: StatusService,
     private fb: FormBuilder,
-  ){}
+  ) { }
 
   users: any[] = [];
   categors: any[] = [];
-  statuses: any[] =[];
+  statuses: any[] = [];
 
   form = this.fb.group({
-    ticketstatus:[''],
-    ticketsubject:[''],
-    ticketdescription:[''],
-    ticketcategory:[''],
-    ticketdeadline:[''],
-    ticketassignee:[''],
-    ticketfile:[''],
+    ticketstatus: [''],
+    ticketsubject: [''],
+    ticketdescription: [''],
+    ticketcategory: [''],
+    ticketdeadline: [''],
+    ticketassignee: [''],
+    ticketfile: [''],
   })
-  get f(){
+  get f() {
     return this.form.controls;
   }
 
-  onUpdateTicket(){
+  onUpdateTicket() {
     let formData: FormData = new FormData();
 
     formData.append('id', this.updatedTicket['id'])
@@ -55,32 +55,32 @@ export class ModalUpdateComponent {
     formData.append('subject', this.f.ticketsubject.value!);
     formData.append('category', this.selectedcategory);
     formData.append('description', this.f.ticketdescription.value!);
-    formData.append('deadline', this.f.ticketdeadline.value!);
-    formData.append('document_Path', this.f.ticketfile.value!);
+    formData.append('deadline_at', this.f.ticketdeadline.value!);
+    formData.append('document_path', this.f.ticketfile.value!);
     formData.append('sender', '1');
 
-    this.ticketService.updateTicket(formData).subscribe(()=>{});
+    this.ticketService.updateTicket(formData).subscribe(() => { });
     location.reload();
     this.onClose()
 
   }
 
-  selectedassignee: string='';
-  selectedcategory: string='';
-  selectedstatus: string='';
+  selectedassignee: string = '';
+  selectedcategory: string = '';
+  selectedstatus: string = '';
 
-  chooseAssignee(assignee: any){
+  chooseAssignee(assignee: any) {
     this.selectedassignee = assignee.target.value;
   }
 
-  chooseCategory(category: any){
+  chooseCategory(category: any) {
     this.selectedcategory = category.target.value;
   }
 
-  chooseStatus(status: any){
+  chooseStatus(status: any) {
     this.selectedstatus = status.target.value;
   }
-  
+
   ngOnInit(): void {
     console.log("NGONINIT")
     this.userService.getAllUsers().subscribe((result) => {
@@ -91,14 +91,14 @@ export class ModalUpdateComponent {
       this.categors = result['data'];
       console.log(this.categors);
     })
-    
+
     this.statusService.showStatuses().subscribe((result) => {
       this.statuses = result['data'];
       console.log(this.statuses);
     })
   }
 
-  onClose(){
+  onClose() {
     this.updateStatus.emit(false);
   }
 }
