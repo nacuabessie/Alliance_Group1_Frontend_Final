@@ -33,21 +33,9 @@ export class UsersService {
     this.passUser.next(user);
   }
 
-getAllUsers(){
-  return this.http.get("http://localhost:8080/user/all").pipe(
-    map((response) => {
-      var users = [];
-      for(const key in response){
-        if(response.hasOwnProperty(key)){
-          if(key==='data'){
-            users.push(...(response as any)[key]);
-          }
-        }
-      }
-      return users;
-    })
-  );
-}
+  getAllUsers(){
+    return this.http.get("http://localhost:8080/user/all").pipe(map(resp=>resp));
+  }
 
 loginUser(email: string){
   return this.http.get(`http://localhost:8080/user/login`).pipe
@@ -62,6 +50,10 @@ saveUser(user: FormData){
   // return this.http.post("http://localhost:8080/user/create",user).pipe(map(resp=>resp));
 }
 
+getUser(user_id: number){
+  return this.http.get(`http://localhost:8080/user/${user_id}`)
+  .pipe(map(resp=>resp));
+}
 
 postTicket(ticket:any){
   return this.http.post("http://localhost:8080/ticket/create",this.users).pipe(map(resp=>resp));

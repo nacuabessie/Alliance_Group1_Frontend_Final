@@ -53,7 +53,6 @@ import { Validators } from '@angular/forms';
 import { Users } from 'src/app/service/user/user';
 import { UsersService } from 'src/app/service/user/user.service';
 import { ForgotpassPageComponent } from 'src/app/forgotpass-page/forgotpass-page.component';
-import { get } from 'jquery';
 
 @Component({
   selector: 'app-login-page',
