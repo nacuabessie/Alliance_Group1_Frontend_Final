@@ -60,58 +60,59 @@ import { ForgotpassPageComponent } from 'src/app/forgotpass-page/forgotpass-page
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginComponent implements OnInit {
- 
-  constructor( 
+
+  constructor(
     private router: Router,
     private userService: UsersService,
     private toast: HotToastService,
     private dialog: MatDialog,
     private fb: FormBuilder
-    ) { 
+  ) {
 
-   
+
   }
-  count : number = 0;
-  found : boolean = false;
+  count: number = 0;
+  found: boolean = false;
   toUser: Users;
-  auth: Users[]=[];
-  ngOnInit(): void {  
-    this.loginForm.value.emailLogin
+  auth: Users[] = [];
+  ngOnInit(): void {
+    // this.form.value.emailLogin
   }
-  loginForm: FormGroup = new FormGroup({
-    emailLogin: new FormControl('', Validators.required, ),
-    passLogin: new FormControl('', Validators.required)
+  // loginForm: FormGroup = new FormGroup({
+  //   emailLogin: new FormControl('', Validators.required,),
+  //   passLogin: new FormControl('', Validators.required)
+  // });
+  form = this.fb.group({
+    emailLogin: [''],
+    passLogin: [''],
   });
- form = this.fb.group({
-  emailLogin:[''],
-  passLogin: [''],
-});
-get f(){
-  return this.form.controls;
-}
-nav(destination: string) {
-  this.router.navigate([destination]);
-}
-  onSubmitLogin(){
-    if(this.form.invalid){
-      return;
-    }
+  get f() {
+    return this.form.controls;
+  }
+  nav(destination: string) {
+    this.router.navigate([destination]);
+  }
+  onSubmitLogin() {
+    // if (this.f.invalid) {
+    //   return;
+    // // }
     // let formData: FormData = new FormData();
+
     // formData.append('email', this.f.emailLogin.value!);
-    //   formData.append('password', this.f.passLogin.value!);
- if (this.loginForm.invalid) {
-      this.toast.error('Complete your Login!');
+    // formData.append('password', this.f.passLogin.value!);
+    if (this.form.invalid) {
+      this.toast.error('Login Error');
       return;
     }
-    this.userService.getUser(Number(this.toUser.user_id))
-    .subscribe((result)=>{
-      if(result['body']['data']!=null){
-        this.router.navigate(['dashboard']);
-      }
-    });
+    this.userService.loginUser(this.f.emailLogin.value!, this.f.passLogin.value!)
+      .subscribe((result) => {
+        if (result['body']['data'] != null) {
+          this.router.navigate(['ticket']);
+        }
+      });
 
-    
-   
+
+
     // this.userService.getAllUsers().subscribe(
     //   (data: Users[]) => {
     //     this.auth = data;
@@ -120,13 +121,13 @@ nav(destination: string) {
     //     this.toast.error(error);
     //   }
     // );
-    
+
     // this.userService.getUser(this.toUser.user_id).subscribe(
     //   (data: Users) => {
     //     this.toUser = data['data']; 
     //     if (this.toUser.email == this.loginForm.value.emailLogin) {
     //     if (this.toUser.password == this.loginForm.value.passLogin) {
-          
+
     //       // this.toast.success(`Welcome ${this.toUser.user_firstname}!`);
     //       this.toUser.logged_in = 'true';
     //       this.updateLoggedIn(this.toUser);
@@ -150,19 +151,19 @@ nav(destination: string) {
 
 
     //end subs
-    
-      
-      
-      
+
+
+
+
   }
-  
-  onOpenForgot( ){
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true
-      dialogConfig.autoFocus = true;
-      dialogConfig.width =  "60%";
-      dialogConfig.panelClass = 'post-dialog-container',
-      this.dialog.open(ForgotpassPageComponent,dialogConfig);
+
+  onOpenForgot() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.panelClass = 'post-dialog-container',
+      this.dialog.open(ForgotpassPageComponent, dialogConfig);
   }
 
   updateLoggedIn(userUpdate: Users) {
@@ -182,7 +183,7 @@ nav(destination: string) {
           error: (message: any) => `${message}`,
         })
       )
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
         //this.temp = data;
       });
   }

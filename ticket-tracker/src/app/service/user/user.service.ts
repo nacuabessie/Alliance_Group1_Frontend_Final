@@ -1,5 +1,5 @@
 import { Injectable, NgModule } from '@angular/core';
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, Subject, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { Users } from 'src/app/service/user/user';
@@ -11,11 +11,11 @@ import { Form } from '@angular/forms';
 })
 
 export class UsersService {
-  users: Users[]=[];
+  users: Users[] = [];
   init: Users;
   passUser: BehaviorSubject<Users>;
   constructor(private http: HttpClient) { }
-  
+
   passUserValue$: Subject<Users> = new Subject();
   get passUserValue(): Subject<Users> {
     return this.passUserValue$;
@@ -33,53 +33,76 @@ export class UsersService {
     this.passUser.next(user);
   }
 
-  getAllUsers(){
-    return this.http.get("http://localhost:8080/user/all").pipe(map(resp=>resp));
+  getAllUsers() {
+    return this.http.get("http://localhost:8080/user/all").pipe(
+      map((response: any) => {
+        var users = [];
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            if (key === 'data') {
+              users.push(...(response as any)[key]);
+            }
+          }
+        }
+        return users;
+      })
+    );
+
+  getUser(user_id: number) {
+    return this.http.get(`http://localhost:8080/user/${user_id}`).pipe(
+      map((response) => response)
+    );
   }
 
-loginUser(email: string){
-  return this.http.get(`http://localhost:8080/user/login`).pipe
-    map((resp=>resp));
-      
-}
+  loginUser(email: string, password: string) {
+    // return this.http.post(`http://localhost:8080/user/login`, [email, password]).pipe(
+    //   map((response => response)));
+    const params = new HttpParams().set('email', email)
+      .set('password', password);
 
-saveUser(user: FormData){
-  return this.http
+    return this.http.get<any>(`http://localhost:8080/user/login`, {
+      observe: 'response',
+      params: params,
+    });
+  }
+
+  saveUser(user: FormData) {
+    return this.http
       .post('http://localhost:8080/user/create', user)
-      .pipe(map((resp) => resp));
-  // return this.http.post("http://localhost:8080/user/create",user).pipe(map(resp=>resp));
-}
+      .pipe(map((response) => response));
+    // return this.http.post("http://localhost:8080/user/create",user).pipe(map(resp=>resp));
+  }
 
 getUser(user_id: number){
   return this.http.get(`http://localhost:8080/user/${user_id}`)
   .pipe(map(resp=>resp));
 }
 
-postTicket(ticket:any){
-  return this.http.post("http://localhost:8080/ticket/create",this.users).pipe(map(resp=>resp));
-}
+  postTicket(ticket: any) {
+    return this.http.post("http://localhost:8080/ticket/create", this.users).pipe(map(response => response));
+  }
 
-addTicket(){
-  return this.http.post("http://localhost:8080/ticket/create",this.users).pipe(map(resp=>resp));
-}
+  addTicket() {
+    return this.http.post("http://localhost:8080/ticket/create", this.users).pipe(map(response => response));
+  }
 
-updateUser(user_id: number) {
+  updateUser(user_id: number) {
     // return this.http
     //   .put(`http://localhost:8080/user/${user_id}/update`, user)
     //   .pipe(map((resp) => resp));
     return this.http.get(`http://localhost:8080/user/${user_id}/update`).pipe(
-    map((response) => {
-      var users = [];
-      for(const key in response){
-        if(response.hasOwnProperty(key)){
-          if(key==='data'){
-            users.push(...(response as any)[key]);
+      map((response: any) => {
+        var users = [];
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            if (key === 'data') {
+              users.push(...(response as any)[key]);
+            }
           }
         }
-      }
-      return users;
-    })
-  );
+        return users;
+      })
+    );
   }
 
 }
